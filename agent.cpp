@@ -60,8 +60,7 @@ char *BEACtoChar(BEACON_t toConvert){
 	}
 	for (int i = 0; i < 4; ++i) {
 		toreturn[12+i] = startUpTime[i];
-	}
-	for (int i = 0; i < 4; ++i) {
+	} for (int i = 0; i < 4; ++i) {
 		toreturn[16+i] = ID[i];
 	}
 	return toreturn;
