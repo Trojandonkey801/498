@@ -1,15 +1,12 @@
 import java.net.*;
 import java.io.*;
+import java.util.*;
 public class manager{
 	public static int SIZE = 4192;
 	public static int PORT = 30000;
 	public DatagramSocket in_socket;
-	public void process_buf(byte[] toprocess){
-		String total = "";
-		for (int i = 0; i < toprocess.length; i++) {
-			total += toprocess[i];
-		}
-	}
+	ArrayList<agent> entities = new ArrayList<agent>();
+
 	public void run(){
 		byte[] buffer = new byte[20];
 		DatagramPacket temp_packet = new DatagramPacket(buffer, buffer.length);
@@ -17,25 +14,25 @@ public class manager{
 			try{
 				in_socket.receive(temp_packet);
 				char[] temp = copy_buf(temp_packet.getData());
-				entity ttemp = handler_buf(temp);
-				ttemp.printData();
+				agent ttemp = handler_buf(temp);
 			}catch(IOException e){
 				System.out.println(e);
 			}
 		}
 	}
+
 	public char[] copy_buf(byte[] tocopy){
 		char[] toreturn = new char[20];
 		for (int i = 0; i < tocopy.length; i++) {
 			toreturn[i] = (char)tocopy[i];
-			System.out.println(toreturn[i]);
 		}
 		return toreturn;
 	}
+
 	// To send ID | startUpTime | timeInterval | IP | cmdPort
 	//Assume each byte is one char.
 	//Use standard java encode/decode to convert to ascii
-	public entity handler_buf(char[] toParse){
+	public agent handler_buf(char[] toParse){
 		int 	ID = 0;                     // randomly generated during startup
 		int 	startUpTime = 0; // the time when the client starts
 		int     timeInterval = 0; // the time period that this beacon will be repeated
@@ -64,7 +61,8 @@ public class manager{
 					break;
 			}
 		}
-		entity toreturn = new entity(ID,startUpTime,timeInterval,IP,cmdPort);
+		agent toreturn = new agent(ID,startUpTime,timeInterval,IP,cmdPort);
+		entities.add(toreturn);
 		return toreturn;
 	}
 	public static void main(String[] args) throws SocketException, UnknownHostException{
@@ -80,13 +78,13 @@ public class manager{
 			bytes[0];
 		return tmp;
 	}
-	private class entity{
+	private class agent{
 		int 	ID;                     // randomly generated during startup
 		int 	startUpTime; // the time when the client starts
 		int     timeInterval; // the time period that this beacon will be repeated
 		char[]  	IP;	            // the IP address of this client
 		int		cmdPort;       // the client listens to this port for manager commands
-		public entity(int ID,int startUpTime, int timeInterval, char[] IP,int cmdPort){
+		public agent(int ID,int startUpTime, int timeInterval, char[] IP,int cmdPort){
 			this.ID = ID;
 			this.startUpTime = startUpTime;
 			this.timeInterval = timeInterval;
@@ -98,6 +96,49 @@ public class manager{
 			System.out.println("startUpTime is" + startUpTime);
 			System.out.println("timeInterval is" + timeInterval);
 			System.out.println("cmdPort is" + cmdPort);
+		}
+	}
+	private class TCP_Conn{
+		private ServerSocket ss;
+		public TCP_Conn(int port){
+			try {
+				ss = new ServerSocket(port);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		public void run() {
+			while (true) {
+				try {
+					Socket clientSock = ss.accept();
+					System.out.println("accepted");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		public void connections(Socket clientSide){
+			DataInputStream inStream  = new DataInputStream(clientSide.getInputStream());
+			DataOutputStream outStream = new DataOutputStream(clientSide.getOutputStream());
+			byte[] buffer = new byte[4096];
+		}
+	}
+	private static HashMap<Thread,Integer> map = new HashMap<Thread,Integer>();
+	static int count;
+	void connection(){
+		//This newserver runs on port 21839 by default
+		//If args[0] is given it replaces the defailt
+		int port = 29999;
+		ServerSocket ssock = new ServerSocket(port);
+		System.out.println("Listening on " + ssock.getLocalPort());
+
+		while (true) {
+			Socket sock = ssock.accept();
+			count++;
+			System.out.println("Connected");
+			Thread t = new Thread(new FileServer(sock));//.start();
+			map.put(t,Integer.valueOf(count));
+			t.start();
 		}
 	}
 }
