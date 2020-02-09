@@ -63,6 +63,7 @@ void send_Beacon(BEACON totransfer){
 
 void time_Beacon(){
 	tosend.ID = rand()%10000;
+	srand((unsigned) time(0));
 	tosend.cmdPort = rand()%100+10000;
 	tosend.IP[0] = *toBytes(127);
 	tosend.IP[1] = *toBytes(0);
@@ -210,5 +211,4 @@ void connectTCP(){
 		sprintf(temp_int,"%d",*time);
 		send(sock,temp_int,sizeof(OS),0);
 	}
-	close(sock);
 }

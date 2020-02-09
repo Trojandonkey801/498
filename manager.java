@@ -8,6 +8,7 @@ public class manager extends Thread{
 	public DatagramSocket in_socket;
 	public ServerSocket ss;
 	ArrayList<agent> entities = new ArrayList<agent>();
+	ArrayList<Integer> ports = new ArrayList<Integer>();
 	/** 
 	 * Constructor for the manager class
 	 * This constructor instantiates the Datagram Socket
@@ -28,16 +29,8 @@ public class manager extends Thread{
 				AgentMonitor();
 			}
 		};
-		/**
-		Thread t3 = new Thread(){
-			public void run(){
-				CmdAgent();
-			}
-		};
-		*/
 		t1.start();
 		t2.start();
-		//t3.start();
 	}
 	/**
 	 * AgentMonitor to listen to check if agents are dead
@@ -63,9 +56,15 @@ public class manager extends Thread{
 				char[] temp_char = copy_buf(buffer);
 				agent temp = handler_buf(temp_char);
 				temp.printData();
-				start_TCP(temp.cmdPort);
+				Thread t3 = new Thread(){
+					public void run(){
+						start_TCP(temp.cmdPort);
+					}
+				};
+				t3.start();
 			}catch(IOException e){
 				System.out.println(e);
+				System.out.println("Beacon");
 			}
 		}
 	}
@@ -79,15 +78,17 @@ public class manager extends Thread{
 				try 
 				{ 
 					s = ss.accept(); 
-					Thread t = new TCP_Conn(s); 
-					t.start(); 
+					TCP_Conn temp = new	TCP_Conn(s); 
+					temp.startstuff(); 
 				} 
 				catch (Exception e){ 
 					e.printStackTrace(); 
+				System.out.println("TCP");
 				} 
 			} 
 		}catch(IOException e){
 			System.out.println(e);
+				System.out.println("TCP");
 		}
 	}
 
@@ -143,8 +144,7 @@ public class manager extends Thread{
 				case 1: 
 					for (int k = 0; k < 4; k++) {
 						IP[k] = toParse[k+4];
-					}
-					break;
+					} break;
 				case 2: 
 					timeInterval = toInteger32(construct);
 					break;
@@ -189,10 +189,12 @@ public class manager extends Thread{
 				} 
 				catch (Exception e){ 
 					e.printStackTrace(); 
+				System.out.println("cmd");
 				} 
 			} 
 		}catch(IOException e){
 			System.out.println(e);
+				System.out.println("cmd");
 		}
 	}
 }
@@ -205,17 +207,18 @@ class TCP_Conn extends Thread
 	// Constructor 
 	public TCP_Conn(Socket s)  
 	{ 
+		System.out.println("here");
 		this.s = s; 
 		try{
 			DataInputS = new DataInputStream(s.getInputStream()); 
-			DataOutputS = new DataOutputStream(s.getOutputStream()); }catch(IOException e){
+			DataOutputS = new DataOutputStream(s.getOutputStream());
+		}catch(IOException e){
 			System.out.println(e);
 		}
 	} 
 
 	ArrayList<String> tosend = new ArrayList<String>();
-	@Override
-	public void run()  
+	public void startstuff()  
 	{ 
 		tosend.add("Time_OS_end");
 		int counter;
@@ -256,12 +259,12 @@ class TCP_Conn extends Thread
 
 class agent{
 	int CurrentTime;
-	int 	ID;                     // randomly generated during startup
-	int 	lastConnected; // The last time this was heard from
-	int 	startUpTime; // the time when the client starts
-	int     timeInterval; // the time period that this beacon will be repeated
-	char[]  	IP;	            // the IP address of this client
-	int		cmdPort;       // the client listens to this port for manager commands
+	int ID;                     // randomly generated during startup
+	int lastConnected; // The last time this was heard from
+	int startUpTime; // the time when the client starts
+	int timeInterval; // the time period that this beacon will be repeated
+	char[] IP;	            // the IP address of this client
+	int	cmdPort;       // the client listens to this port for manager commands
 	public agent(int ID,int startUpTime, int timeInterval, char[] IP,int cmdPort){
 		lastConnected = CurrentTime;
 		this.ID = ID;
