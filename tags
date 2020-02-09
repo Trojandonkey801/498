@@ -1,0 +1,496 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Admin	Batinov/Iteration 3/Credential.java	/^	private boolean Admin;$/;"	f	class:Credential	file:
+Admin	Batinov/Iteration 3/UI.java	/^	private static boolean Admin = false;$/;"	f	class:UI	file:
+Admin	Batinov/Iteration 3/adam/Credential.java	/^	private boolean Admin;$/;"	f	class:Credential	file:
+Admin	Batinov/Iteration 3/adam/UI.java	/^	private static boolean Admin = false;$/;"	f	class:UI	file:
+Admin	Batinov/newstuff/Credential.java	/^	private boolean Admin;$/;"	f	class:Credential	file:
+Admin	Batinov/newstuff/UI.java	/^	private static boolean Admin = false;$/;"	f	class:UI	file:
+Admin	Batinov/newstuff/adam/Credential.java	/^	private boolean Admin;$/;"	f	class:Credential	file:
+Admin	Batinov/newstuff/adam/UI.java	/^	private static boolean Admin = false;$/;"	f	class:UI	file:
+Admin	Batinov/server/Credential.java	/^	private boolean Admin;$/;"	f	class:Credential	file:
+Administrator	Batinov/Iteration 3/Administrator.java	/^	public Administrator(Socket S,String userName){$/;"	m	class:Administrator
+Administrator	Batinov/Iteration 3/Administrator.java	/^public class Administrator extends user{$/;"	c
+Administrator	Batinov/Iteration 3/adam/Administrator.java	/^	public Administrator(Socket S,String userName){$/;"	m	class:Administrator
+Administrator	Batinov/Iteration 3/adam/Administrator.java	/^public class Administrator extends user{$/;"	c
+Administrator	Batinov/newstuff/Administrator.java	/^	public Administrator(Socket S,String userName){$/;"	m	class:Administrator
+Administrator	Batinov/newstuff/Administrator.java	/^public class Administrator extends user{$/;"	c
+Administrator	Batinov/newstuff/adam/Administrator.java	/^	public Administrator(Socket S,String userName){$/;"	m	class:Administrator
+Administrator	Batinov/newstuff/adam/Administrator.java	/^public class Administrator extends user{$/;"	c
+Admins	Batinov/Iteration 3/EchoServer.java	/^	static ArrayList<Credential> Admins = new ArrayList<Credential>();$/;"	f	class:EchoServer
+Admins	Batinov/Iteration 3/adam/EchoServer.java	/^	static ArrayList<Credential> Admins = new ArrayList<Credential>();$/;"	f	class:EchoServer
+Admins	Batinov/newstuff/EchoServer.java	/^	static ArrayList<Credential> Admins = new ArrayList<Credential>();$/;"	f	class:EchoServer
+Admins	Batinov/newstuff/adam/EchoServer.java	/^	static ArrayList<Credential> Admins = new ArrayList<Credential>();$/;"	f	class:EchoServer
+AgentMonitor	manager.java	/^	public void AgentMonitor(){$/;"	m	class:manager
+BEACON	Server.cpp	/^struct BEACON{$/;"	s	file:
+BEACON	agent.cpp	/^typedef struct BEACON$/;"	s	file:
+BEACON_t	agent.cpp	/^ }BEACON_t;$/;"	t	typeref:struct:BEACON	file:
+BEACtoChar	agent.cpp	/^char *BEACtoChar(BEACON_t toConvert){$/;"	f
+BeaconListener	manager.java	/^	public void BeaconListener(){$/;"	m	class:manager
+BeaconSender	Agent.cpp	/^void BeaconSender(){$/;"	f
+BeaconSender	Server.cpp	/^void BeaconSender(){$/;"	f
+CmdAgent	manager.java	/^	public void CmdAgent(int port){$/;"	m	class:manager
+Credential	Batinov/Iteration 3/Credential.java	/^	public Credential(boolean isAdmin,String userName,String password){$/;"	m	class:Credential
+Credential	Batinov/Iteration 3/Credential.java	/^public class Credential{$/;"	c
+Credential	Batinov/Iteration 3/adam/Credential.java	/^	public Credential(boolean isAdmin,String userName,String password){$/;"	m	class:Credential
+Credential	Batinov/Iteration 3/adam/Credential.java	/^public class Credential{$/;"	c
+Credential	Batinov/newstuff/Credential.java	/^	public Credential(boolean isAdmin,String userName,String password){$/;"	m	class:Credential
+Credential	Batinov/newstuff/Credential.java	/^public class Credential{$/;"	c
+Credential	Batinov/newstuff/adam/Credential.java	/^	public Credential(boolean isAdmin,String userName,String password){$/;"	m	class:Credential
+Credential	Batinov/newstuff/adam/Credential.java	/^public class Credential{$/;"	c
+Credential	Batinov/server/Credential.java	/^	public Credential(boolean isAdmin,String userName){$/;"	m	class:Credential
+Credential	Batinov/server/Credential.java	/^public class Credential{$/;"	c
+Creds	Batinov/Iteration 3/EchoServer.java	/^	static ArrayList<Credential> Creds = new ArrayList<Credential>();$/;"	f	class:EchoServer
+Creds	Batinov/Iteration 3/adam/EchoServer.java	/^	static ArrayList<Credential> Creds = new ArrayList<Credential>();$/;"	f	class:EchoServer
+Creds	Batinov/newstuff/EchoServer.java	/^	static ArrayList<Credential> Creds = new ArrayList<Credential>();$/;"	f	class:EchoServer
+Creds	Batinov/newstuff/adam/EchoServer.java	/^	static ArrayList<Credential> Creds = new ArrayList<Credential>();$/;"	f	class:EchoServer
+CurrentTime	manager.java	/^	int CurrentTime;$/;"	f	class:agent
+DataInputS	Server.java	/^    DataInputStream DataInputS; $/;"	f	class:TCP_Conn
+DataInputS	manager.java	/^	DataInputStream DataInputS; $/;"	f	class:TCP_Conn
+DataOutputS	Server.java	/^    DataOutputStream DataOutputS; $/;"	f	class:TCP_Conn
+DataOutputS	manager.java	/^	DataOutputStream DataOutputS; $/;"	f	class:TCP_Conn
+EchoClient	Batinov/Iteration 3/EchoClient.java	/^public class EchoClient {$/;"	c
+EchoClient	Batinov/Iteration 3/adam/EchoClient.java	/^public class EchoClient {$/;"	c
+EchoClient	Batinov/newstuff/EchoClient.java	/^public class EchoClient {$/;"	c
+EchoClient	Batinov/newstuff/adam/EchoClient.java	/^public class EchoClient {$/;"	c
+EchoServer	Batinov/Iteration 3/EchoServer.java	/^	public EchoServer(Socket indivSocket)throws IOException{$/;"	m	class:EchoServer
+EchoServer	Batinov/Iteration 3/EchoServer.java	/^public class EchoServer implements Runnable{$/;"	c
+EchoServer	Batinov/Iteration 3/adam/EchoServer.java	/^	public EchoServer(Socket indivSocket)throws IOException{$/;"	m	class:EchoServer
+EchoServer	Batinov/Iteration 3/adam/EchoServer.java	/^public class EchoServer implements Runnable{$/;"	c
+EchoServer	Batinov/newstuff/EchoServer.java	/^	public EchoServer(Socket indivSocket)throws IOException{$/;"	m	class:EchoServer
+EchoServer	Batinov/newstuff/EchoServer.java	/^public class EchoServer implements Runnable{$/;"	c
+EchoServer	Batinov/newstuff/adam/EchoServer.java	/^	public EchoServer(Socket indivSocket)throws IOException{$/;"	m	class:EchoServer
+EchoServer	Batinov/newstuff/adam/EchoServer.java	/^public class EchoServer implements Runnable{$/;"	c
+FileClient	Batinov/client/FileClient.java	/^	public FileClient(String host, int port) {$/;"	m	class:FileClient
+FileClient	Batinov/client/FileClient.java	/^public class FileClient {$/;"	c
+FileServer	Batinov/server/FileServer.java	/^	public FileServer(int port) {$/;"	m	class:FileServer
+FileServer	Batinov/server/FileServer.java	/^public class FileServer extends Thread {$/;"	c
+FileServer	FileServer.java	/^	public FileServer(int port) {$/;"	m	class:FileServer
+FileServer	FileServer.java	/^public class FileServer extends Thread {$/;"	c
+Files	Batinov/Iteration 3/EchoServer.java	/^	static ArrayList<String> Files = new ArrayList<String>();$/;"	f	class:EchoServer
+Files	Batinov/Iteration 3/adam/EchoServer.java	/^	static ArrayList<String> Files = new ArrayList<String>();$/;"	f	class:EchoServer
+Files	Batinov/newstuff/EchoServer.java	/^	static ArrayList<String> Files = new ArrayList<String>();$/;"	f	class:EchoServer
+Files	Batinov/newstuff/adam/EchoServer.java	/^	static ArrayList<String> Files = new ArrayList<String>();$/;"	f	class:EchoServer
+GetLocalTime	Server.cpp	/^void GetLocalTime(int *time, int *valid){$/;"	f
+GetLocalTime	agent.cpp	/^void GetLocalTime(int *time, int *valid){$/;"	f
+ID	Server.cpp	/^	int ID;$/;"	m	struct:BEACON	file:
+ID	agent.cpp	/^ 	int 	ID;                     \/\/ randomly generated during startup$/;"	m	struct:BEACON	file:
+ID	client.java	/^	int ID;$/;"	f	class:client
+ID	manager.java	/^	int 	ID;                     \/\/ randomly generated during startup$/;"	f	class:agent
+IP	Server.cpp	/^	char IP[4];$/;"	m	struct:BEACON	file:
+IP	agent.cpp	/^ 	char  	IP[4];	            \/\/ the IP address of this client$/;"	m	struct:BEACON	file:
+IP	manager.java	/^	char[]  	IP;	            \/\/ the IP address of this client$/;"	f	class:agent
+MAXLINE	agent.cpp	21;"	d	file:
+PORT	agent.cpp	20;"	d	file:
+PORT	client.cpp	7;"	d	file:
+PORT	manager.java	/^	public static int PORT = 30000;$/;"	f	class:manager
+SIZE	manager.java	/^	public static int SIZE = 4192;$/;"	f	class:manager
+Server	Server.java	/^public class Server  $/;"	c
+Student	Batinov/Iteration 3/Student.java	/^	public Student(Socket S,String userName)throws IOException{$/;"	m	class:Student
+Student	Batinov/Iteration 3/Student.java	/^public class Student extends user{$/;"	c
+Student	Batinov/Iteration 3/adam/Student.java	/^	public Student(Socket S,String userName)throws IOException{$/;"	m	class:Student
+Student	Batinov/Iteration 3/adam/Student.java	/^public class Student extends user{$/;"	c
+Student	Batinov/newstuff/Student.java	/^	public Student(Socket S,String userName)throws IOException{$/;"	m	class:Student
+Student	Batinov/newstuff/Student.java	/^public class Student extends user{$/;"	c
+Student	Batinov/newstuff/adam/Student.java	/^	public Student(Socket S,String userName)throws IOException{$/;"	m	class:Student
+Student	Batinov/newstuff/adam/Student.java	/^public class Student extends user{$/;"	c
+TCP_Conn	Server.java	/^	public TCP_Conn(Socket s)  $/;"	m	class:TCP_Conn
+TCP_Conn	Server.java	/^class TCP_Conn extends Thread  $/;"	c
+TCP_Conn	TCP_Conn.java	/^	public TCP_Conn(Socket toassign){$/;"	m	class:TCP_Conn
+TCP_Conn	TCP_Conn.java	/^public class TCP_Conn extends Thread{$/;"	c
+TCP_Conn	manager.java	/^	public TCP_Conn(Socket s)  $/;"	m	class:TCP_Conn
+TCP_Conn	manager.java	/^class TCP_Conn extends Thread  $/;"	c
+TcpClient	TcpClient.java	/^public class TcpClient$/;"	c
+UDPClient	UDPClient.java	/^	public UDPClient() {$/;"	m	class:UDPClient
+UDPClient	UDPClient.java	/^public class UDPClient {$/;"	c
+UDPServer	UDPServer.java	/^	public UDPServer(int rp) {$/;"	m	class:UDPServer
+UDPServer	UDPServer.java	/^public class UDPServer {$/;"	c
+UI	Batinov/Iteration 3/UI.java	/^public class UI{$/;"	c
+UI	Batinov/Iteration 3/adam/UI.java	/^public class UI{$/;"	c
+UI	Batinov/newstuff/UI.java	/^public class UI{$/;"	c
+UI	Batinov/newstuff/adam/UI.java	/^public class UI{$/;"	c
+Users	Batinov/Iteration 3/EchoServer.java	/^	static ArrayList<String> Users = new ArrayList<String>();$/;"	f	class:EchoServer
+Users	Batinov/Iteration 3/adam/EchoServer.java	/^	static ArrayList<String> Users = new ArrayList<String>();$/;"	f	class:EchoServer
+Users	Batinov/newstuff/EchoServer.java	/^	static ArrayList<String> Users = new ArrayList<String>();$/;"	f	class:EchoServer
+Users	Batinov/newstuff/adam/EchoServer.java	/^	static ArrayList<String> Users = new ArrayList<String>();$/;"	f	class:EchoServer
+UsersAdmin	Batinov/Iteration 3/EchoServer.java	/^	static ArrayList<String> UsersAdmin = new ArrayList<String>();$/;"	f	class:EchoServer
+UsersAdmin	Batinov/Iteration 3/adam/EchoServer.java	/^	static ArrayList<String> UsersAdmin = new ArrayList<String>();$/;"	f	class:EchoServer
+UsersAdmin	Batinov/newstuff/EchoServer.java	/^	static ArrayList<String> UsersAdmin = new ArrayList<String>();$/;"	f	class:EchoServer
+UsersAdmin	Batinov/newstuff/adam/EchoServer.java	/^	static ArrayList<String> UsersAdmin = new ArrayList<String>();$/;"	f	class:EchoServer
+actionHandler	Batinov/Iteration 3/UI.java	/^	public static boolean actionHandler(String S)throws IOException,InterruptedException{$/;"	m	class:UI
+actionHandler	Batinov/Iteration 3/adam/UI.java	/^	public static boolean actionHandler(String S)throws IOException,InterruptedException{$/;"	m	class:UI
+actionHandler	Batinov/newstuff/UI.java	/^	public static boolean actionHandler(String S)throws IOException,InterruptedException{$/;"	m	class:UI
+actionHandler	Batinov/newstuff/adam/UI.java	/^	public static boolean actionHandler(String S)throws IOException,InterruptedException{$/;"	m	class:UI
+addAgent	manager.java	/^	public void addAgent(agent A){$/;"	m	class:manager
+addAnswer	Batinov/Iteration 3/user.java	/^	public void addAnswer(String answer, int num)throws IOException{$/;"	m	class:user
+addAnswer	Batinov/newstuff/user.java	/^	public void addAnswer(String answer, int num)throws IOException{$/;"	m	class:user
+addQuestion	Batinov/Iteration 3/adam/user.java	/^	public void addQuestion(String question)throws IOException{$/;"	m	class:user
+addQuestion	Batinov/Iteration 3/user.java	/^	public void addQuestion(String question)throws IOException{$/;"	m	class:user
+addQuestion	Batinov/newstuff/adam/user.java	/^	public void addQuestion(String question)throws IOException{$/;"	m	class:user
+addQuestion	Batinov/newstuff/user.java	/^	public void addQuestion(String question)throws IOException{$/;"	m	class:user
+addUser	Batinov/Iteration 3/Administrator.java	/^	public void addUser(String User, String Password,String isAdmin)throws IOException{$/;"	m	class:Administrator
+addUser	Batinov/Iteration 3/adam/Administrator.java	/^	public void addUser(String User, String Password,String isAdmin)throws IOException{$/;"	m	class:Administrator
+addUser	Batinov/deprecated/newserver.java	/^	private void addUser(String userName,boolean isAdmin,String Password){$/;"	m	class:newserver	file:
+addUser	Batinov/newstuff/Administrator.java	/^	public void addUser(String User, String Password,String isAdmin)throws IOException{$/;"	m	class:Administrator
+addUser	Batinov/newstuff/adam/Administrator.java	/^	public void addUser(String User, String Password,String isAdmin)throws IOException{$/;"	m	class:Administrator
+addUser	Batinov/server/FileServer.java	/^	private void addUser(String userName,boolean isAdmin){$/;"	m	class:FileServer	file:
+addUser	FileServer.java	/^	private void addUser(String userName,boolean isAdmin){$/;"	m	class:FileServer	file:
+agent	manager.java	/^	public agent(int ID,int startUpTime, int timeInterval, char[] IP,int cmdPort){$/;"	m	class:agent
+agent	manager.java	/^class agent{$/;"	c
+allCred	Batinov/deprecated/newserver.java	/^	private ArrayList<Credential> allCred = new ArrayList<Credential>();$/;"	f	class:newserver	file:
+allCred	Batinov/deprecated/server.java	/^	private ArrayList<Credential> allCred = new ArrayList<Credential>();$/;"	f	class:server	file:
+allCred	Batinov/server/FileServer.java	/^	private ArrayList<Credential> allCred = new ArrayList<Credential>();$/;"	f	class:FileServer	file:
+allCred	FileServer.java	/^	private ArrayList<Credential> allCred = new ArrayList<Credential>();$/;"	f	class:FileServer	file:
+clearNotif	Batinov/Iteration 3/user.java	/^	public void clearNotif() throws IOException{$/;"	m	class:user
+clearNotif	Batinov/newstuff/user.java	/^	public void clearNotif() throws IOException{$/;"	m	class:user
+clearNotification	Batinov/Iteration 3/EchoServer.java	/^	public void clearNotification(String userName) throws FileNotFoundException,IOException{$/;"	m	class:EchoServer
+clearNotification	Batinov/newstuff/EchoServer.java	/^	public void clearNotification(String userName) throws FileNotFoundException,IOException{$/;"	m	class:EchoServer
+client	Batinov/client/FileClient.java	/^package client;$/;"	p
+client	client.java	/^public class client{$/;"	c
+close	Batinov/Iteration 3/adam/user.java	/^	public void close()throws IOException{$/;"	m	class:user
+close	Batinov/Iteration 3/user.java	/^	public void close()throws IOException{$/;"	m	class:user
+close	Batinov/newstuff/adam/user.java	/^	public void close()throws IOException{$/;"	m	class:user
+close	Batinov/newstuff/user.java	/^	public void close()throws IOException{$/;"	m	class:user
+close	UDPServer.java	/^	private boolean close;$/;"	f	class:UDPServer	file:
+cmdPort	Server.cpp	/^	int cmdPort;$/;"	m	struct:BEACON	file:
+cmdPort	agent.cpp	/^ 	int		cmdPort;       \/\/ the client listens to this port for manager commands$/;"	m	struct:BEACON	file:
+cmdPort	manager.java	/^	int		cmdPort;       \/\/ the client listens to this port for manager commands$/;"	f	class:agent
+conn_socket	TCP_Conn.java	/^	private Socket conn_socket;$/;"	f	class:TCP_Conn	file:
+connectTCP	agent.cpp	/^void connectTCP(){$/;"	f
+convertFile	Batinov/Iteration 3/EchoServer.java	/^	public void convertFile(String filename,String topic,String format)throws IOException{$/;"	m	class:EchoServer
+convertFile	Batinov/Iteration 3/user.java	/^	public void convertFile(String fileName,String topic, String format)throws IOException{$/;"	m	class:user
+convertFile	Batinov/newstuff/EchoServer.java	/^	public void convertFile(String filename,String topic,String format)throws IOException{$/;"	m	class:EchoServer
+convertFile	Batinov/newstuff/user.java	/^	public void convertFile(String fileName,String topic, String format)throws IOException{$/;"	m	class:user
+convertUpperCase	TcpServer.c	/^void convertUpperCase(char *buffer, int length)$/;"	f
+copy_buf	manager.java	/^	public char[] copy_buf(byte[] tocopy){$/;"	m	class:manager
+count	Batinov/deprecated/newserver.java	/^	private static int count = 0;$/;"	f	class:newserver	file:
+count	Batinov/server/FileServer.java	/^	private static int count;$/;"	f	class:FileServer	file:
+count	FileServer.java	/^	private static int count;$/;"	f	class:FileServer	file:
+count	TCP_Conn.java	/^	static int count;$/;"	f	class:TCP_Conn
+csocket	Batinov/deprecated/newserver.java	/^	Socket csocket;$/;"	f	class:newserver
+currentTime	agent.cpp	/^int currentTime(){$/;"	f
+deleteFile	Batinov/Iteration 3/Administrator.java	/^	public void deleteFile(String fileName,String topic)throws IOException{$/;"	m	class:Administrator
+deleteFile	Batinov/Iteration 3/EchoServer.java	/^	private void deleteFile(String topic,String fileName)throws FileNotFoundException,IOException{$/;"	m	class:EchoServer	file:
+deleteFile	Batinov/Iteration 3/adam/Administrator.java	/^	public void deleteFile(String fileName,String topic)throws IOException{$/;"	m	class:Administrator
+deleteFile	Batinov/Iteration 3/adam/EchoServer.java	/^	private void deleteFile(String topic,String fileName)throws FileNotFoundException,IOException{$/;"	m	class:EchoServer	file:
+deleteFile	Batinov/newstuff/Administrator.java	/^	public void deleteFile(String fileName,String topic)throws IOException{$/;"	m	class:Administrator
+deleteFile	Batinov/newstuff/EchoServer.java	/^	private void deleteFile(String topic,String fileName)throws FileNotFoundException,IOException{$/;"	m	class:EchoServer	file:
+deleteFile	Batinov/newstuff/adam/Administrator.java	/^	public void deleteFile(String fileName,String topic)throws IOException{$/;"	m	class:Administrator
+deleteFile	Batinov/newstuff/adam/EchoServer.java	/^	private void deleteFile(String topic,String fileName)throws FileNotFoundException,IOException{$/;"	m	class:EchoServer	file:
+deleteLine	Batinov/Iteration 3/EchoServer.java	/^	public static void deleteLine(String f, String fileName, String topic) throws FileNotFoundException,IOException{$/;"	m	class:EchoServer
+deleteLine	Batinov/newstuff/EchoServer.java	/^	public static void deleteLine(String f, String fileName, String topic) throws FileNotFoundException,IOException{$/;"	m	class:EchoServer
+dir	Batinov/Iteration 3/EchoServer.java	/^	final static String dir = ".\/ServerFileDir\/";$/;"	f	class:EchoServer
+dir	Batinov/Iteration 3/adam/EchoServer.java	/^	final static String dir = ".\/ServerFileDir\/";$/;"	f	class:EchoServer
+dir	Batinov/Iteration 3/adam/user.java	/^	final String dir = ".\/ClientFileDir\/";$/;"	f	class:user
+dir	Batinov/Iteration 3/user.java	/^	final String dir = ".\/ClientFileDir\/";$/;"	f	class:user
+dir	Batinov/newstuff/EchoServer.java	/^	final static String dir = ".\/ServerFileDir\/";$/;"	f	class:EchoServer
+dir	Batinov/newstuff/adam/EchoServer.java	/^	final static String dir = ".\/ServerFileDir\/";$/;"	f	class:EchoServer
+dir	Batinov/newstuff/adam/user.java	/^	final String dir = ".\/ClientFileDir\/";$/;"	f	class:user
+dir	Batinov/newstuff/user.java	/^	final String dir = ".\/ClientFileDir\/";$/;"	f	class:user
+dos	Batinov/Iteration 3/adam/user.java	/^	DataOutputStream dos;$/;"	f	class:user
+dos	Batinov/Iteration 3/user.java	/^	DataOutputStream dos;$/;"	f	class:user
+dos	Batinov/newstuff/adam/user.java	/^	DataOutputStream dos;$/;"	f	class:user
+dos	Batinov/newstuff/user.java	/^	DataOutputStream dos;$/;"	f	class:user
+entities	manager.java	/^	ArrayList<agent> entities = new ArrayList<agent>();$/;"	f	class:manager
+equals	Batinov/Iteration 3/Credential.java	/^	public boolean equals(Credential C){$/;"	m	class:Credential
+equals	Batinov/Iteration 3/adam/Credential.java	/^	public boolean equals(Credential C){$/;"	m	class:Credential
+equals	Batinov/newstuff/Credential.java	/^	public boolean equals(Credential C){$/;"	m	class:Credential
+equals	Batinov/newstuff/adam/Credential.java	/^	public boolean equals(Credential C){$/;"	m	class:Credential
+getAdmin	Batinov/Iteration 3/Credential.java	/^	public boolean getAdmin(){$/;"	m	class:Credential
+getAdmin	Batinov/Iteration 3/adam/Credential.java	/^	public boolean getAdmin(){$/;"	m	class:Credential
+getAdmin	Batinov/newstuff/Credential.java	/^	public boolean getAdmin(){$/;"	m	class:Credential
+getAdmin	Batinov/newstuff/adam/Credential.java	/^	public boolean getAdmin(){$/;"	m	class:Credential
+getAdmin	Batinov/server/Credential.java	/^	public boolean getAdmin(){$/;"	m	class:Credential
+getFile	Batinov/Iteration 3/adam/user.java	/^	public void getFile(String fileName) throws IOException,InterruptedException{$/;"	m	class:user
+getFile	Batinov/Iteration 3/user.java	/^	public void getFile(String fileName) throws IOException,InterruptedException{$/;"	m	class:user
+getFile	Batinov/newstuff/adam/user.java	/^	public void getFile(String fileName) throws IOException,InterruptedException{$/;"	m	class:user
+getFile	Batinov/newstuff/user.java	/^	public void getFile(String fileName) throws IOException,InterruptedException{$/;"	m	class:user
+getFileList	Batinov/Iteration 3/adam/user.java	/^	public void getFileList()throws IOException{$/;"	m	class:user
+getFileList	Batinov/Iteration 3/user.java	/^	public void getFileList()throws IOException{$/;"	m	class:user
+getFileList	Batinov/newstuff/adam/user.java	/^	public void getFileList()throws IOException{$/;"	m	class:user
+getFileList	Batinov/newstuff/user.java	/^	public void getFileList()throws IOException{$/;"	m	class:user
+getLocalOS	Server.cpp	/^void getLocalOS(char OS[16], int *valid){$/;"	f
+getLocalOS	agent.cpp	/^void getLocalOS(char OS[16],int *valid){$/;"	f
+getName	Batinov/Iteration 3/Credential.java	/^	public String getName(){$/;"	m	class:Credential
+getName	Batinov/Iteration 3/adam/Credential.java	/^	public String getName(){$/;"	m	class:Credential
+getName	Batinov/newstuff/Credential.java	/^	public String getName(){$/;"	m	class:Credential
+getName	Batinov/newstuff/adam/Credential.java	/^	public String getName(){$/;"	m	class:Credential
+getName	Batinov/server/Credential.java	/^	public String getName(){$/;"	m	class:Credential
+getNotification	Batinov/Iteration 3/EchoServer.java	/^	public String getNotification(String userName) throws FileNotFoundException{$/;"	m	class:EchoServer
+getNotification	Batinov/newstuff/EchoServer.java	/^	public String getNotification(String userName) throws FileNotFoundException{$/;"	m	class:EchoServer
+getOsName	Server.cpp	/^string getOsName()$/;"	f
+getPassword	Batinov/Iteration 3/Credential.java	/^	public int getPassword(){$/;"	m	class:Credential
+getPassword	Batinov/Iteration 3/adam/Credential.java	/^	public int getPassword(){$/;"	m	class:Credential
+getPassword	Batinov/newstuff/Credential.java	/^	public int getPassword(){$/;"	m	class:Credential
+getPassword	Batinov/newstuff/adam/Credential.java	/^	public int getPassword(){$/;"	m	class:Credential
+getSocket	Batinov/Iteration 3/adam/user.java	/^	public Socket getSocket(){$/;"	m	class:user
+getSocket	Batinov/Iteration 3/user.java	/^	public Socket getSocket(){$/;"	m	class:user
+getSocket	Batinov/newstuff/adam/user.java	/^	public Socket getSocket(){$/;"	m	class:user
+getSocket	Batinov/newstuff/user.java	/^	public Socket getSocket(){$/;"	m	class:user
+getToken	Batinov/Iteration 3/Credential.java	/^	public int getToken(){$/;"	m	class:Credential
+getToken	Batinov/Iteration 3/adam/Credential.java	/^	public int getToken(){$/;"	m	class:Credential
+getToken	Batinov/Iteration 3/adam/user.java	/^	public String getToken()throws IOException{$/;"	m	class:user
+getToken	Batinov/Iteration 3/user.java	/^	public String getToken()throws IOException{$/;"	m	class:user
+getToken	Batinov/client/FileClient.java	/^	private String getToken()throws IOException{$/;"	m	class:FileClient	file:
+getToken	Batinov/newstuff/Credential.java	/^	public int getToken(){$/;"	m	class:Credential
+getToken	Batinov/newstuff/adam/Credential.java	/^	public int getToken(){$/;"	m	class:Credential
+getToken	Batinov/newstuff/adam/user.java	/^	public String getToken()throws IOException{$/;"	m	class:user
+getToken	Batinov/newstuff/user.java	/^	public String getToken()throws IOException{$/;"	m	class:user
+getToken	Batinov/server/Credential.java	/^	public int getToken(){$/;"	m	class:Credential
+handleConnection	Batinov/deprecated/newserver.java	/^	private void handleConnection(Socket s) throws IOException$/;"	m	class:newserver	file:
+handleConnection	Batinov/deprecated/server.java	/^	private void handleConnection(Socket s) throws IOException$/;"	m	class:server	file:
+handleConnection	Batinov/server/FileServer.java	/^	private void handleConnection(Socket s) throws IOException$/;"	m	class:FileServer	file:
+handleConnection	FileServer.java	/^	private void handleConnection(Socket s) throws IOException$/;"	m	class:FileServer	file:
+handleExist	Batinov/deprecated/newserver.java	/^	private int handleExist(String S){$/;"	m	class:newserver	file:
+handleExist	Batinov/server/FileServer.java	/^	private int handleExist(String S){$/;"	m	class:FileServer	file:
+handleExist	FileServer.java	/^	private int handleExist(String S){$/;"	m	class:FileServer	file:
+handleTimeOver	manager.java	/^	public void handleTimeOver(){$/;"	m	class:manager
+handler_buf	manager.java	/^	public agent handler_buf(char[] toParse){$/;"	m	class:manager
+host	Batinov/client/FileClient.java	/^	String host;$/;"	f	class:FileClient
+in_socket	manager.java	/^	public DatagramSocket in_socket;$/;"	f	class:manager
+indivSocket	Batinov/Iteration 3/EchoServer.java	/^	Socket indivSocket;$/;"	f	class:EchoServer
+indivSocket	Batinov/Iteration 3/adam/EchoServer.java	/^	Socket indivSocket;$/;"	f	class:EchoServer
+indivSocket	Batinov/newstuff/EchoServer.java	/^	Socket indivSocket;$/;"	f	class:EchoServer
+indivSocket	Batinov/newstuff/adam/EchoServer.java	/^	Socket indivSocket;$/;"	f	class:EchoServer
+initCon	Batinov/Iteration 3/adam/user.java	/^	public void initCon(int port, String host){$/;"	m	class:user
+initCon	Batinov/Iteration 3/user.java	/^	public void initCon(int port, String host){$/;"	m	class:user
+initCon	Batinov/newstuff/adam/user.java	/^	public void initCon(int port, String host){$/;"	m	class:user
+initCon	Batinov/newstuff/user.java	/^	public void initCon(int port, String host){$/;"	m	class:user
+instance	Batinov/Iteration 3/UI.java	/^	private static user instance;$/;"	f	class:UI	file:
+instance	Batinov/Iteration 3/adam/UI.java	/^	private static user instance;$/;"	f	class:UI	file:
+instance	Batinov/newstuff/UI.java	/^	private static user instance;$/;"	f	class:UI	file:
+instance	Batinov/newstuff/adam/UI.java	/^	private static user instance;$/;"	f	class:UI	file:
+lastConnected	manager.java	/^	int 	lastConnected; \/\/ The last time this was heard from$/;"	f	class:agent
+last_time	agent.cpp	/^int last_time = 0;$/;"	v
+listAnswers	Batinov/Iteration 3/user.java	/^	public void listAnswers(int num)throws IOException{$/;"	m	class:user
+listAnswers	Batinov/newstuff/user.java	/^	public void listAnswers(int num)throws IOException{$/;"	m	class:user
+listQuestions	Batinov/Iteration 3/adam/user.java	/^	public void listQuestions()throws IOException{$/;"	m	class:user
+listQuestions	Batinov/Iteration 3/user.java	/^	public void listQuestions()throws IOException{$/;"	m	class:user
+listQuestions	Batinov/newstuff/adam/user.java	/^	public void listQuestions()throws IOException{$/;"	m	class:user
+listQuestions	Batinov/newstuff/user.java	/^	public void listQuestions()throws IOException{$/;"	m	class:user
+login	Batinov/Iteration 3/adam/user.java	/^	public String login(String User, String Password)throws IOException{$/;"	m	class:user
+login	Batinov/Iteration 3/user.java	/^	public String login(String User, String Password)throws IOException{$/;"	m	class:user
+login	Batinov/newstuff/adam/user.java	/^	public String login(String User, String Password)throws IOException{$/;"	m	class:user
+login	Batinov/newstuff/user.java	/^	public String login(String User, String Password)throws IOException{$/;"	m	class:user
+loginHandler	Batinov/Iteration 3/UI.java	/^	public static boolean loginHandler(){$/;"	m	class:UI
+loginHandler	Batinov/Iteration 3/adam/UI.java	/^	public static boolean loginHandler(){$/;"	m	class:UI
+loginHandler	Batinov/newstuff/UI.java	/^	public static boolean loginHandler(){$/;"	m	class:UI
+loginHandler	Batinov/newstuff/adam/UI.java	/^	public static boolean loginHandler(){$/;"	m	class:UI
+main	Agent.cpp	/^int main(int argc, char *argv[])$/;"	f
+main	Batinov/Iteration 3/EchoClient.java	/^	public static void main(String[] args) throws IOException {$/;"	m	class:EchoClient
+main	Batinov/Iteration 3/EchoServer.java	/^	public static void main(String[] args) throws IOException {$/;"	m	class:EchoServer
+main	Batinov/Iteration 3/UI.java	/^	public static void main(String[] args)throws IOException,InterruptedException {$/;"	m	class:UI
+main	Batinov/Iteration 3/adam/EchoClient.java	/^	public static void main(String[] args) throws IOException {$/;"	m	class:EchoClient
+main	Batinov/Iteration 3/adam/EchoServer.java	/^	public static void main(String[] args) throws IOException {$/;"	m	class:EchoServer
+main	Batinov/Iteration 3/adam/UI.java	/^	public static void main(String[] args)throws IOException,InterruptedException {$/;"	m	class:UI
+main	Batinov/client/FileClient.java	/^	public static void main(String[] args) throws IOException, InterruptedException {$/;"	m	class:FileClient
+main	Batinov/deprecated/newserver.java	/^	public static void main(String args[]) throws Exception {$/;"	m	class:newserver
+main	Batinov/deprecated/server.java	/^	public static void main(String args[]) throws Exception {$/;"	m	class:server
+main	Batinov/newstuff/EchoClient.java	/^	public static void main(String[] args) throws IOException {$/;"	m	class:EchoClient
+main	Batinov/newstuff/EchoServer.java	/^	public static void main(String[] args) throws IOException {$/;"	m	class:EchoServer
+main	Batinov/newstuff/UI.java	/^	public static void main(String[] args)throws IOException,InterruptedException {$/;"	m	class:UI
+main	Batinov/newstuff/adam/EchoClient.java	/^	public static void main(String[] args) throws IOException {$/;"	m	class:EchoClient
+main	Batinov/newstuff/adam/EchoServer.java	/^	public static void main(String[] args) throws IOException {$/;"	m	class:EchoServer
+main	Batinov/newstuff/adam/UI.java	/^	public static void main(String[] args)throws IOException,InterruptedException {$/;"	m	class:UI
+main	Batinov/server/FileServer.java	/^   public static void main(String args[]) throws Exception {$/;"	m	class:FileServer
+main	Batinov/server/testing.java	/^	public static void main(String[] args)throws UnsupportedEncodingException{$/;"	m	class:testing
+main	FileServer.java	/^   public static void main(String args[]) throws Exception {$/;"	m	class:FileServer
+main	Server.cpp	/^int main(int argc, char const *argv[]){$/;"	f
+main	Server.java	/^    public static void main(String[] args) throws IOException  $/;"	m	class:Server
+main	TCP_Conn.java	/^	public static void main(String[] args) {$/;"	m	class:TCP_Conn
+main	TcpClient.java	/^    public static void main(String args[]) throws IOException$/;"	m	class:TcpClient
+main	TcpServer.c	/^int main()$/;"	f
+main	UDPClient.java	/^	public static void main(String[] args) {$/;"	m	class:UDPClient
+main	UDPServer.java	/^	public static void main(String args[]) {$/;"	m	class:UDPServer
+main	agent.cpp	/^int main(int argc, char *argv[])$/;"	f
+main	client.cpp	/^int main(int argc, char const *argv[]) $/;"	f
+main	client.java	/^	public static void main(String[] args) {$/;"	m	class:client
+main	manager.java	/^	public static void main(String[] args) throws SocketException, UnknownHostException{$/;"	m	class:manager
+main	testend.java	/^    public static void main(String[] args) throws UnknownHostException, SocketException, IOException  {$/;"	m	class:testend
+main	testing.cpp	/^int main(int argc, char *argv[])$/;"	f
+main	testrec.java	/^    public static void main(String[] args) {$/;"	m	class:testrec
+manager	manager.java	/^	public manager(){$/;"	m	class:manager
+manager	manager.java	/^public class manager extends Thread{$/;"	c
+map	Batinov/deprecated/newserver.java	/^	private static HashMap<Thread,Integer> map;$/;"	f	class:newserver	file:
+map	Batinov/server/FileServer.java	/^   private static HashMap<Thread,Integer> map = new HashMap<Thread,Integer>();$/;"	f	class:FileServer	file:
+map	FileServer.java	/^   private static HashMap<Thread,Integer> map = new HashMap<Thread,Integer>();$/;"	f	class:FileServer	file:
+newserver	Batinov/deprecated/newserver.java	/^	public newserver(Socket csocket) {$/;"	m	class:newserver
+newserver	Batinov/deprecated/newserver.java	/^public class newserver implements Runnable {$/;"	c
+p	Batinov/Iteration 3/adam/user.java	/^	PrintWriter p;$/;"	f	class:user
+p	Batinov/Iteration 3/user.java	/^	PrintWriter p;$/;"	f	class:user
+p	Batinov/newstuff/adam/user.java	/^	PrintWriter p;$/;"	f	class:user
+p	Batinov/newstuff/user.java	/^	PrintWriter p;$/;"	f	class:user
+password	Batinov/Iteration 3/Credential.java	/^	private int password;$/;"	f	class:Credential	file:
+password	Batinov/Iteration 3/adam/Credential.java	/^	private int password;$/;"	f	class:Credential	file:
+password	Batinov/newstuff/Credential.java	/^	private int password;$/;"	f	class:Credential	file:
+password	Batinov/newstuff/adam/Credential.java	/^	private int password;$/;"	f	class:Credential	file:
+port	Batinov/Iteration 3/EchoServer.java	/^	static int port = 21839;$/;"	f	class:EchoServer
+port	Batinov/Iteration 3/adam/EchoServer.java	/^	static int port = 21839;$/;"	f	class:EchoServer
+port	Batinov/client/FileClient.java	/^	int port;$/;"	f	class:FileClient
+port	Batinov/newstuff/EchoServer.java	/^	static int port = 21839;$/;"	f	class:EchoServer
+port	Batinov/newstuff/adam/EchoServer.java	/^	static int port = 21839;$/;"	f	class:EchoServer
+port	UDPServer.java	/^	private int port;$/;"	f	class:UDPServer	file:
+printBinaryArray	TcpClient.java	/^    static void printBinaryArray(byte[] b, String comment)$/;"	m	class:TcpClient
+printBinaryArray	TcpServer.c	/^void printBinaryArray(char *buffer, int length)$/;"	f
+printData	manager.java	/^	public void printData(){$/;"	m	class:agent
+processMessage	UDPServer.java	/^	public void processMessage(byte[] data) {$/;"	m	class:UDPServer
+pullCmd	manager.java	/^	public int pullCmd(String toParse){$/;"	m	class:manager
+rand	Batinov/Iteration 3/Credential.java	/^	private Random rand = new Random();$/;"	f	class:Credential	file:
+rand	Batinov/Iteration 3/adam/Credential.java	/^	private Random rand = new Random();$/;"	f	class:Credential	file:
+rand	Batinov/deprecated/newserver.java	/^	Random rand = new Random();$/;"	f	class:newserver
+rand	Batinov/newstuff/Credential.java	/^	private Random rand = new Random();$/;"	f	class:Credential	file:
+rand	Batinov/newstuff/adam/Credential.java	/^	private Random rand = new Random();$/;"	f	class:Credential	file:
+rand	Batinov/server/Credential.java	/^	private Random rand = new Random();$/;"	f	class:Credential	file:
+rand	Batinov/server/FileServer.java	/^	Random rand = new Random();$/;"	f	class:FileServer
+rand	FileServer.java	/^	Random rand = new Random();$/;"	f	class:FileServer
+readAdmins	Batinov/Iteration 3/EchoServer.java	/^	public static void readAdmins() throws FileNotFoundException{$/;"	m	class:EchoServer
+readAdmins	Batinov/Iteration 3/adam/EchoServer.java	/^	public static void readAdmins() throws FileNotFoundException{$/;"	m	class:EchoServer
+readAdmins	Batinov/newstuff/EchoServer.java	/^	public static void readAdmins() throws FileNotFoundException{$/;"	m	class:EchoServer
+readAdmins	Batinov/newstuff/adam/EchoServer.java	/^	public static void readAdmins() throws FileNotFoundException{$/;"	m	class:EchoServer
+readFiles	Batinov/Iteration 3/EchoServer.java	/^	public static void readFiles() throws FileNotFoundException{$/;"	m	class:EchoServer
+readFiles	Batinov/Iteration 3/adam/EchoServer.java	/^	public static void readFiles() throws FileNotFoundException{$/;"	m	class:EchoServer
+readFiles	Batinov/newstuff/EchoServer.java	/^	public static void readFiles() throws FileNotFoundException{$/;"	m	class:EchoServer
+readFiles	Batinov/newstuff/adam/EchoServer.java	/^	public static void readFiles() throws FileNotFoundException{$/;"	m	class:EchoServer
+readUsers	Batinov/Iteration 3/EchoServer.java	/^	public static void readUsers() throws FileNotFoundException{$/;"	m	class:EchoServer
+readUsers	Batinov/Iteration 3/adam/EchoServer.java	/^	public static void readUsers() throws FileNotFoundException{$/;"	m	class:EchoServer
+readUsers	Batinov/newstuff/EchoServer.java	/^	public static void readUsers() throws FileNotFoundException{$/;"	m	class:EchoServer
+readUsers	Batinov/newstuff/adam/EchoServer.java	/^	public static void readUsers() throws FileNotFoundException{$/;"	m	class:EchoServer
+receiveFully	TcpServer.c	/^int receiveFully(int client_socket, char *buffer, int length)$/;"	f
+receiveMessage	client.java	/^	public void receiveMessage(){$/;"	m	class:client
+receive_one_byte	TcpServer.c	/^int receive_one_byte(int client_socket, char *cur_char)$/;"	f
+receivedMessages	UDPServer.java	/^	private int[] receivedMessages;$/;"	f	class:UDPServer	file:
+run	Batinov/Iteration 3/EchoServer.java	/^	public void run(){$/;"	m	class:EchoServer
+run	Batinov/Iteration 3/adam/EchoServer.java	/^	public void run(){$/;"	m	class:EchoServer
+run	Batinov/deprecated/newserver.java	/^	public void run() {$/;"	m	class:newserver
+run	Batinov/deprecated/server.java	/^	public void run(){$/;"	m	class:server
+run	Batinov/newstuff/EchoServer.java	/^	public void run(){$/;"	m	class:EchoServer
+run	Batinov/newstuff/adam/EchoServer.java	/^	public void run(){$/;"	m	class:EchoServer
+run	Batinov/server/FileServer.java	/^	public void run() {$/;"	m	class:FileServer
+run	FileServer.java	/^	public void run() {$/;"	m	class:FileServer
+run	Server.java	/^	public void run()  $/;"	m	class:TCP_Conn
+run	TCP_Conn.java	/^	public void run(Socket clientSide){$/;"	m	class:TCP_Conn
+run	UDPServer.java	/^	private void run() throws SocketTimeoutException {$/;"	m	class:UDPServer	file:
+run	manager.java	/^	public void run()  $/;"	m	class:TCP_Conn
+run	testrec.java	/^    public void run(int port) {    $/;"	m	class:testrec
+s	Batinov/Iteration 3/UI.java	/^	private static Scanner s = new Scanner(System.in);$/;"	f	class:UI	file:
+s	Batinov/Iteration 3/adam/UI.java	/^	private static Scanner s = new Scanner(System.in);$/;"	f	class:UI	file:
+s	Batinov/client/FileClient.java	/^	private Socket s;$/;"	f	class:FileClient	file:
+s	Batinov/newstuff/UI.java	/^	private static Scanner s = new Scanner(System.in);$/;"	f	class:UI	file:
+s	Batinov/newstuff/adam/UI.java	/^	private static Scanner s = new Scanner(System.in);$/;"	f	class:UI	file:
+s	Server.java	/^    final Socket s; $/;"	f	class:TCP_Conn
+s	manager.java	/^	final Socket s; $/;"	f	class:TCP_Conn
+saveFile	Batinov/Iteration 3/EchoServer.java	/^	private void saveFile(Socket clientSock, int filesize,String fileName,String topic) throws IOException,InterruptedException {$/;"	m	class:EchoServer	file:
+saveFile	Batinov/Iteration 3/adam/EchoServer.java	/^	private void saveFile(Socket clientSock, int filesize,String fileName,String topic) throws IOException,InterruptedException {$/;"	m	class:EchoServer	file:
+saveFile	Batinov/client/FileClient.java	/^	private void saveFile(Socket clientSock,int token) throws IOException {$/;"	m	class:FileClient	file:
+saveFile	Batinov/deprecated/newserver.java	/^	private void saveFile(Socket clientSock) throws IOException {$/;"	m	class:newserver	file:
+saveFile	Batinov/deprecated/server.java	/^	private void saveFile(Socket clientSocket) throws IOException{$/;"	m	class:server	file:
+saveFile	Batinov/newstuff/EchoServer.java	/^	private void saveFile(Socket clientSock, int filesize,String fileName,String topic) throws IOException,InterruptedException {$/;"	m	class:EchoServer	file:
+saveFile	Batinov/newstuff/adam/EchoServer.java	/^	private void saveFile(Socket clientSock, int filesize,String fileName,String topic) throws IOException,InterruptedException {$/;"	m	class:EchoServer	file:
+saveFile	Batinov/server/FileServer.java	/^	private void saveFile(Socket clientSock) throws IOException {$/;"	m	class:FileServer	file:
+saveFile	FileServer.java	/^	private void saveFile(Socket clientSock) throws IOException {$/;"	m	class:FileServer	file:
+selectLesson	Batinov/Iteration 3/adam/EchoServer.java	/^	private void selectLesson(PrintWriter out,BufferedReader in, String lessonNumber)throws IOException{$/;"	m	class:EchoServer	file:
+selectLesson	Batinov/Iteration 3/adam/user.java	/^	public void selectLesson(String lessonNumber) throws IOException{$/;"	m	class:user
+selectLesson	Batinov/newstuff/adam/EchoServer.java	/^	private void selectLesson(PrintWriter out,BufferedReader in, String lessonNumber)throws IOException{$/;"	m	class:EchoServer	file:
+selectLesson	Batinov/newstuff/adam/user.java	/^	public void selectLesson(String lessonNumber) throws IOException{$/;"	m	class:user
+send	UDPClient.java	/^	private void send(byte[] data, InetAddress destAddr, int destPort) {$/;"	m	class:UDPClient	file:
+sendAnswerList	Batinov/Iteration 3/EchoServer.java	/^	private void sendAnswerList(PrintWriter out,BufferedReader in, int num)throws IOException{$/;"	m	class:EchoServer	file:
+sendAnswerList	Batinov/newstuff/EchoServer.java	/^	private void sendAnswerList(PrintWriter out,BufferedReader in, int num)throws IOException{$/;"	m	class:EchoServer	file:
+sendFile	Batinov/Iteration 3/EchoServer.java	/^	public void sendFile(String file) throws IOException {$/;"	m	class:EchoServer
+sendFile	Batinov/Iteration 3/adam/EchoServer.java	/^	public void sendFile(String file) throws IOException {$/;"	m	class:EchoServer
+sendFile	Batinov/Iteration 3/adam/user.java	/^	public void sendFile(String file,String topic) throws IOException {$/;"	m	class:user
+sendFile	Batinov/Iteration 3/user.java	/^	public void sendFile(String file,String topic) throws IOException {$/;"	m	class:user
+sendFile	Batinov/client/FileClient.java	/^	public void sendFile(String file) throws IOException {$/;"	m	class:FileClient
+sendFile	Batinov/newstuff/EchoServer.java	/^	public void sendFile(String file) throws IOException {$/;"	m	class:EchoServer
+sendFile	Batinov/newstuff/adam/EchoServer.java	/^	public void sendFile(String file) throws IOException {$/;"	m	class:EchoServer
+sendFile	Batinov/newstuff/adam/user.java	/^	public void sendFile(String file,String topic) throws IOException {$/;"	m	class:user
+sendFile	Batinov/newstuff/user.java	/^	public void sendFile(String file,String topic) throws IOException {$/;"	m	class:user
+sendFile	Batinov/server/FileServer.java	/^	public void sendFile(String file,Socket s) throws IOException {$/;"	m	class:FileServer
+sendFile	FileServer.java	/^	public void sendFile(String file,Socket s) throws IOException {$/;"	m	class:FileServer
+sendFileList	Batinov/Iteration 3/EchoServer.java	/^	private void sendFileList(PrintWriter out,BufferedReader in)throws IOException{$/;"	m	class:EchoServer	file:
+sendFileList	Batinov/Iteration 3/adam/EchoServer.java	/^	private void sendFileList(PrintWriter out,BufferedReader in)throws IOException{$/;"	m	class:EchoServer	file:
+sendFileList	Batinov/newstuff/EchoServer.java	/^	private void sendFileList(PrintWriter out,BufferedReader in)throws IOException{$/;"	m	class:EchoServer	file:
+sendFileList	Batinov/newstuff/adam/EchoServer.java	/^	private void sendFileList(PrintWriter out,BufferedReader in)throws IOException{$/;"	m	class:EchoServer	file:
+sendLessons	Batinov/Iteration 3/adam/EchoServer.java	/^private void sendLessons(PrintWriter out,BufferedReader in)throws IOException{$/;"	m	class:EchoServer	file:
+sendLessons	Batinov/newstuff/adam/EchoServer.java	/^private void sendLessons(PrintWriter out,BufferedReader in)throws IOException{$/;"	m	class:EchoServer	file:
+sendMessage	Batinov/client/FileClient.java	/^	private void sendMessage(String token)throws IOException,InterruptedException{$/;"	m	class:FileClient	file:
+sendMessage	client.java	/^	public void sendMessage(){$/;"	m	class:client
+sendQuestionList	Batinov/Iteration 3/EchoServer.java	/^	private void sendQuestionList(PrintWriter out,BufferedReader in)throws IOException{$/;"	m	class:EchoServer	file:
+sendQuestionList	Batinov/Iteration 3/adam/EchoServer.java	/^	private void sendQuestionList(PrintWriter out,BufferedReader in)throws IOException{$/;"	m	class:EchoServer	file:
+sendQuestionList	Batinov/newstuff/EchoServer.java	/^	private void sendQuestionList(PrintWriter out,BufferedReader in)throws IOException{$/;"	m	class:EchoServer	file:
+sendQuestionList	Batinov/newstuff/adam/EchoServer.java	/^	private void sendQuestionList(PrintWriter out,BufferedReader in)throws IOException{$/;"	m	class:EchoServer	file:
+sendSoc	UDPClient.java	/^	private DatagramSocket sendSoc;$/;"	f	class:UDPClient	file:
+send_Beacon	agent.cpp	/^void send_Beacon(BEACON totransfer){$/;"	f
+server	Batinov/deprecated/server.java	/^	public server(int port){$/;"	m	class:server
+server	Batinov/deprecated/server.java	/^public class server extends Thread{$/;"	c
+server	Batinov/server/Credential.java	/^package server;$/;"	p
+server	Batinov/server/FileServer.java	/^package server; $/;"	p
+server	FileServer.java	/^package server; $/;"	p
+showLessons	Batinov/Iteration 3/adam/user.java	/^	public void showLessons() throws IOException{$/;"	m	class:user
+showLessons	Batinov/newstuff/adam/user.java	/^	public void showLessons() throws IOException{$/;"	m	class:user
+socket	Batinov/Iteration 3/adam/user.java	/^	protected Socket socket;$/;"	f	class:user
+socket	Batinov/Iteration 3/user.java	/^	protected Socket socket;$/;"	f	class:user
+socket	Batinov/newstuff/adam/user.java	/^	protected Socket socket;$/;"	f	class:user
+socket	Batinov/newstuff/user.java	/^	protected Socket socket;$/;"	f	class:user
+socket	UDPServer.java	/^	private DatagramSocket socket;$/;"	f	class:UDPServer	file:
+ss	Batinov/deprecated/server.java	/^	private ServerSocket ss;$/;"	f	class:server	file:
+ss	Batinov/server/FileServer.java	/^	private ServerSocket ss;$/;"	f	class:FileServer	file:
+ss	FileServer.java	/^	private ServerSocket ss;$/;"	f	class:FileServer	file:
+ss	TCP_Conn.java	/^	static ServerSocket ss;$/;"	f	class:TCP_Conn
+ss	manager.java	/^	public ServerSocket ss;$/;"	f	class:manager
+startUpTime	Server.cpp	/^	int startUpTime;$/;"	m	struct:BEACON	file:
+startUpTime	agent.cpp	/^ 	int 	startUpTime; \/\/ the time when the client starts$/;"	m	struct:BEACON	file:
+startUpTime	manager.java	/^	int 	startUpTime; \/\/ the time when the client starts$/;"	f	class:agent
+tcp_port	TCP_Conn.java	/^	static int tcp_port = 29999;$/;"	f	class:TCP_Conn
+testLoop	UDPClient.java	/^	private void testLoop(InetAddress serverAddr, int recvPort, int countTo) {$/;"	m	class:UDPClient	file:
+testend	testend.java	/^public class testend {$/;"	c
+testing	Batinov/server/testing.java	/^public class testing{$/;"	c
+testrec	testrec.java	/^public class testrec {$/;"	c
+this.ID	client.java	/^		this.ID = ID;$/;"	f	class:client
+timeInterval	Server.cpp	/^	int timeInterval;$/;"	m	struct:BEACON	file:
+timeInterval	agent.cpp	/^	int     timeInterval; \/\/ the time period that this beacon will be repeated$/;"	m	struct:BEACON	file:
+timeInterval	manager.java	/^	int     timeInterval; \/\/ the time period that this beacon will be repeated$/;"	f	class:agent
+timeOver	manager.java	/^	public boolean timeOver(){$/;"	m	class:agent
+time_Beacon	agent.cpp	/^void time_Beacon(){$/;"	f
+toBytes	TcpClient.java	/^    static private byte[] toBytes(int i)$/;"	m	class:TcpClient	file:
+toBytes	agent.cpp	/^char *toBytes(int toConvert){$/;"	f
+toBytes	manager.java	/^	static private byte[] toBytes(int i)$/;"	m	class:TCP_Conn	file:
+toInteger32	TcpServer.c	/^int toInteger32(char *bytes)$/;"	f
+toInteger32	manager.java	/^	int toInteger32(char[] bytes)$/;"	m	class:manager
+to_run	manager.java	/^	public int to_run;$/;"	f	class:manager
+token	Batinov/Iteration 3/Credential.java	/^	private int token;$/;"	f	class:Credential	file:
+token	Batinov/Iteration 3/adam/Credential.java	/^	private int token;$/;"	f	class:Credential	file:
+token	Batinov/deprecated/userr.java	/^	private String token;$/;"	f	class:user	file:
+token	Batinov/newstuff/Credential.java	/^	private int token;$/;"	f	class:Credential	file:
+token	Batinov/newstuff/adam/Credential.java	/^	private int token;$/;"	f	class:Credential	file:
+token	Batinov/server/Credential.java	/^	private int token;$/;"	f	class:Credential	file:
+tokens	Batinov/deprecated/newserver.java	/^	private ArrayList<String> tokens = new ArrayList<String>();$/;"	f	class:newserver	file:
+tokens	Batinov/deprecated/server.java	/^	private ArrayList<String> tokens = new ArrayList<String>();$/;"	f	class:server	file:
+tokens	Batinov/server/FileServer.java	/^	private ArrayList<String> tokens = new ArrayList<String>();$/;"	f	class:FileServer	file:
+tokens	FileServer.java	/^	private ArrayList<String> tokens = new ArrayList<String>();$/;"	f	class:FileServer	file:
+tosend	agent.cpp	/^BEACON tosend;$/;"	v
+tosend	manager.java	/^	ArrayList<String> tosend = new ArrayList<String>();$/;"	f	class:TCP_Conn
+totalMessages	UDPServer.java	/^	private int totalMessages = -1;$/;"	f	class:UDPServer	file:
+upDateTime	manager.java	/^	public void upDateTime(int Time){$/;"	m	class:agent
+user	Batinov/Iteration 3/adam/user.java	/^	public user(String userName){$/;"	m	class:user
+user	Batinov/Iteration 3/adam/user.java	/^public class user{$/;"	c
+user	Batinov/Iteration 3/user.java	/^	public user(String userName){$/;"	m	class:user
+user	Batinov/Iteration 3/user.java	/^public class user{$/;"	c
+user	Batinov/deprecated/userr.java	/^	public user(int port, String host, String userName)throws IOException{$/;"	m	class:user
+user	Batinov/deprecated/userr.java	/^public abstract class user extends client{$/;"	c
+user	Batinov/newstuff/adam/user.java	/^	public user(String userName){$/;"	m	class:user
+user	Batinov/newstuff/adam/user.java	/^public class user{$/;"	c
+user	Batinov/newstuff/user.java	/^	public user(String userName){$/;"	m	class:user
+user	Batinov/newstuff/user.java	/^public class user{$/;"	c
+userName	Batinov/Iteration 3/Credential.java	/^	private String userName;$/;"	f	class:Credential	file:
+userName	Batinov/Iteration 3/adam/Credential.java	/^	private String userName;$/;"	f	class:Credential	file:
+userName	Batinov/Iteration 3/adam/user.java	/^	String userName;$/;"	f	class:user
+userName	Batinov/Iteration 3/user.java	/^	String userName;$/;"	f	class:user
+userName	Batinov/newstuff/Credential.java	/^	private String userName;$/;"	f	class:Credential	file:
+userName	Batinov/newstuff/adam/Credential.java	/^	private String userName;$/;"	f	class:Credential	file:
+userName	Batinov/newstuff/adam/user.java	/^	String userName;$/;"	f	class:user
+userName	Batinov/newstuff/user.java	/^	String userName;$/;"	f	class:user
+userName	Batinov/server/Credential.java	/^	private String userName;$/;"	f	class:Credential	file:

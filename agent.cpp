@@ -1,4 +1,6 @@
 #include <fstream>
+#include <thread>
+#include <sys/utsname.h>
 #include <stdio.h>
 #include <ctime>
 #include <chrono>
@@ -8,8 +10,8 @@
 #include <unistd.h>
 #include <string>
 #include <string.h>
-#include <string.h>
 #include <iostream>
+#include <stdio.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <stdlib.h>
@@ -18,6 +20,11 @@
 #define PORT	30000 
 #define MAXLINE 1020 
 int last_time = 0;
+/**
+ * This is a struct containing the information to send in a beacon
+ *
+ *
+ */
 typedef struct BEACON
  {
  	int 	ID;                     // randomly generated during startup
@@ -30,20 +37,21 @@ void func(int sockfd);
 int receiveFully(int client_socket, char *buffer, int length);
 char *BEACtoChar(BEACON_t toConvert);
 char *toBytes(int toConvert);
+void connectTCP();
+int currentTime();
+BEACON tosend;
 /**
-int main() {
+ * This functiono sends a UDP based beacon to the server
+ * on port 30000
+ */
+void send_Beacon(BEACON totransfer){
 	int server_socket;
 	struct sockaddr_in sin;
 	memset(&sin, 0, sizeof(sin));
 	sin.sin_family = AF_INET; // or AF_INET6 (address family)
 	sin.sin_port = htons(30000);
 	sin.sin_addr.s_addr= INADDR_ANY;
-	BEACON_t tosend;
-	tosend.ID = rand()%10000;
-	tosend.startUpTime = 66;
-	tosend.timeInterval = 67;
-	char *toprint = BEACtoChar(tosend);
-	std::cout << "printing?" << std::endl;
+	char *toprint = BEACtoChar(totransfer);
 	if((server_socket = socket(AF_INET,SOCK_DGRAM,0))< 0)
 	{
 		printf("bind error\n");
@@ -52,21 +60,44 @@ int main() {
 			0, (const struct sockaddr *) &sin,  
 			sizeof(sin)); 	
 } 
-*/
+
+void time_Beacon(){
+	tosend.ID = rand()%10000;
+	tosend.cmdPort = rand()%100+10000;
+	tosend.IP[0] = *toBytes(127);
+	tosend.IP[1] = *toBytes(0);
+	tosend.IP[2] = *toBytes(0);
+	tosend.IP[3] = *toBytes(1);
+	tosend.startUpTime = currentTime();
+	tosend.timeInterval = 67;//Time in interval
+	for (int i = 0; i < 200; ++i) {
+		send_Beacon(tosend);
+		usleep((tosend.timeInterval-1)*1000000);
+	}
+}
 int main(int argc, char *argv[])
 {
-	
+	std::thread t1(time_Beacon);
+	usleep(100);
+	std::thread t2(connectTCP);
+	t1.join();
+	t2.join();
 	return 0;
 }
 
-int get_Time(){
-	auto start = std::chrono::system_clock::now();
-	auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(start);
-}
+
+//--------------------------------------------------
+//Useful methods
+//--------------------------------------------------
+
+
 // To send ID | startUpTime | timeInterval | IP | cmdPort
+// This function converts a beacon into that char pointer
+// to be sent over UDP
 char *BEACtoChar(BEACON_t toConvert){
 	char *toreturn = (char *)malloc(20*sizeof(char));
 	char *cmdP = toBytes(toConvert.cmdPort);
+	char *IP = toConvert.IP;
 	char *timeInterval = toBytes(toConvert.timeInterval);
 	char *startUpTime = toBytes(toConvert.startUpTime);
 	char *ID = toBytes(toConvert.ID);
@@ -74,14 +105,15 @@ char *BEACtoChar(BEACON_t toConvert){
 		toreturn[i] = cmdP[i];
 	}
 	for (int i = 0; i < 4; ++i) {
-		toreturn[4+i] = toConvert.IP[i];
+		toreturn[4+i] = *toBytes(toConvert.IP[i]);
 	}
 	for (int i = 0; i < 4; ++i) {
 		toreturn[8+i] = timeInterval[i];
 	}
 	for (int i = 0; i < 4; ++i) {
 		toreturn[12+i] = startUpTime[i];
-	} for (int i = 0; i < 4; ++i) {
+	}
+	for (int i = 0; i < 4; ++i) {
 		toreturn[16+i] = ID[i];
 	}
 	return toreturn;
@@ -111,37 +143,72 @@ char *toBytes(int toConvert){
 	return toreturn;
 }
 
-void connectTCP(){
-   	int server_socket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
- 	struct sockaddr_in sin;
-    memset(&sin, 0, sizeof(sin));
-    //sin.sin_len = sizeof(sin);  // comment this line out if running on pyrite (linux) 
-    sin.sin_family = AF_INET; // or AF_INET6 (address family)
-    sin.sin_port = htons(1234);
-    sin.sin_addr.s_addr= INADDR_ANY;
-    if (bind(server_socket, (struct sockaddr *)&sin, sizeof(sin)) < 0) 
-    {
-        // Handle the error.
-		printf("bind error\n");
-    }
-	func(server_socket);
+int currentTime(){
+	using namespace std::chrono;
+	seconds ms = duration_cast<seconds>(
+			system_clock::now().time_since_epoch()
+			);
+	int time = ms.count();
+	return time;
 }
-int MAX = 2096;
-void func(int sockfd)
-{
-	char buff[MAX];
-    int n;
-    for (;;) {
-        n = 0;
-		std::string towrite = "writing";
-		strcpy(buff,towrite.c_str());
-        write(sockfd, buff, sizeof(buff));
-        bzero(buff, sizeof(buff));
-        read(sockfd, buff, sizeof(buff));
-        printf("From Server : %s", buff);
-        if ((strncmp(buff, "exit", 4)) == 0) {
-            printf("Client Exit...\n");
-            break;
-        }
-    }
+
+void GetLocalTime(int *time, int *valid){
+	*time = currentTime();
+}
+
+void getLocalOS(char OS[16],int *valid){
+#if defined(_WIN32)
+	strcpy(OS,"OS is: swindows");
+#elif defined(__linux__)
+	strcpy(OS,"OS is: linux");
+#elif defined(__APPLE__)
+	strcpy(OS,"OS is: apple");
+#elif defined(BSD)
+	strcpy(OS,"OS is: BSD");
+#elif defined(__QNX__)
+	strcpy(OS,"OS is: QNX");
+#else
+	strcpy(OS,"null");
+#endif
+}
+
+//--------------------------------------------------
+//TCP STUFF
+//--------------------------------------------------
+void connectTCP(){
+	usleep(30000);
+	int sock = 0, valread; 
+	struct sockaddr_in serv_addr; 
+	char buffer[1024] = {0};
+	if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) 
+	{ 
+		printf("\n Socket creation error \n"); 
+	} 
+
+	serv_addr.sin_family = AF_INET; 
+	serv_addr.sin_port = htons(tosend.cmdPort); 
+	serv_addr.sin_addr.s_addr= INADDR_ANY;
+	if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0) 
+	{ 
+		printf("\nConnection Failed \n"); 
+	} 
+	std::string temp;
+	valread = read(sock ,buffer, 1024); 
+	printf("%s\n",buffer ); 
+	std::string s(buffer);
+	temp = s;
+	int valid;
+	char OS[16];
+	int *time = (int *)malloc(sizeof(int));
+	if(temp.find("OS") != std::string::npos){
+		getLocalOS(OS,&valid);
+		send(sock,OS,sizeof(OS),0);
+	}
+	if(temp.find("Time") != std::string::npos){
+		GetLocalTime(time,&valid);
+		char temp_int[50];
+		sprintf(temp_int,"%d",*time);
+		send(sock,temp_int,sizeof(OS),0);
+	}
+	close(sock);
 }

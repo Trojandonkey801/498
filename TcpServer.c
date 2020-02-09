@@ -26,7 +26,6 @@ int main()
 
     if (bind(server_socket, (struct sockaddr *)&sin, sizeof(sin)) < 0) 
     {
-        // Handle the error.
 		printf("bind error\n");
     }
     

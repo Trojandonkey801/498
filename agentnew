@@ -28,16 +28,8 @@ public class manager extends Thread{
 				AgentMonitor();
 			}
 		};
-		/**
-		Thread t3 = new Thread(){
-			public void run(){
-				CmdAgent();
-			}
-		};
-		*/
 		t1.start();
 		t2.start();
-		//t3.start();
 	}
 	/**
 	 * AgentMonitor to listen to check if agents are dead
@@ -49,45 +41,34 @@ public class manager extends Thread{
 				handleTimeOver();
 		}
 	}
-	public void handleTimeOver(){}
+	public int pullCmd(String toParse){
+		return Integer.valueOf(toParse.replaceAll("cmdPort is ",""));
+	}
 	/**
 	 * Function to keep a UDP port open to listen to incoming UDP 
 	 *
 	 */
 	public void BeaconListener(){
-		byte[] buffer = new byte[24];
+		byte[] buffer = new byte[20];
 		DatagramPacket temp_packet = new DatagramPacket(buffer, buffer.length);
 		while(true){
 			try{
 				in_socket.receive(temp_packet);
-				char[] temp_char = copy_buf(buffer);
-				agent temp = handler_buf(temp_char);
-				temp.printData();
-				start_TCP(temp.cmdPort);
+				String toprint = new String(buffer,"UTF-8");
+				Scanner S = new Scanner(toprint);
+				int toStart = 0; 
+				while(S.hasNextLine()){
+					String temp_string = S.nextLine();
+					if(temp_string.contains("cmdPort is"))
+						toStart = pullCmd(temp_string);
+				}
+				ServerSocket ss = new ServerSocket(toStart);
+				Socket s = ss.accept(); 
+				Thread t = new TCP_Conn(s); 
+				t.start(); 
 			}catch(IOException e){
 				System.out.println(e);
 			}
-		}
-	}
-
-	public void start_TCP(int port){
-		try{
-			ServerSocket ss = new ServerSocket(port);
-			while (true)  
-			{ 
-				Socket s = null; 
-				try 
-				{ 
-					s = ss.accept(); 
-					Thread t = new TCP_Conn(s); 
-					t.start(); 
-				} 
-				catch (Exception e){ 
-					e.printStackTrace(); 
-				} 
-			} 
-		}catch(IOException e){
-			System.out.println(e);
 		}
 	}
 
@@ -115,7 +96,7 @@ public class manager extends Thread{
 	 *
 	 */
 	public char[] copy_buf(byte[] tocopy){
-		char[] toreturn = new char[24];
+		char[] toreturn = new char[20];
 		for (int i = 0; i < tocopy.length; i++) {
 			toreturn[i] = (char)tocopy[i];
 		}
@@ -138,12 +119,10 @@ public class manager extends Thread{
 			}
 			switch(i){
 				case 0: 
-					cmdPort = toInteger32(construct);
+					ID = toInteger32(construct);
 					break;
 				case 1: 
-					for (int k = 0; k < 4; k++) {
-						IP[k] = toParse[k+4];
-					}
+					IP = construct;
 					break;
 				case 2: 
 					timeInterval = toInteger32(construct);
@@ -172,22 +151,26 @@ public class manager extends Thread{
 			bytes[0];
 		return tmp;
 	}
+	public void handleTimeOver(){
+
+	}
 	//------------------------------------------------- 
 	// TCP related methods and classes
 	//-------------------------------------------------- 
-	public void CmdAgent(){
+	public void CmdAgent(int port){
 		try{
-			ServerSocket ss = new ServerSocket(29999);
 			while (true)  
 			{ 
 				Socket s = null; 
 				try 
 				{ 
+					ServerSocket ss = new ServerSocket(port);
 					s = ss.accept(); 
 					Thread t = new TCP_Conn(s); 
 					t.start(); 
 				} 
 				catch (Exception e){ 
+					s.close(); 
 					e.printStackTrace(); 
 				} 
 			} 
@@ -208,7 +191,8 @@ class TCP_Conn extends Thread
 		this.s = s; 
 		try{
 			DataInputS = new DataInputStream(s.getInputStream()); 
-			DataOutputS = new DataOutputStream(s.getOutputStream()); }catch(IOException e){
+			DataOutputS = new DataOutputStream(s.getOutputStream()); 
+		}catch(IOException e){
 			System.out.println(e);
 		}
 	} 
@@ -284,12 +268,5 @@ class agent{
 		System.out.println("startUpTime is " + startUpTime);
 		System.out.println("timeInterval is " + timeInterval);
 		System.out.println("cmdPort is " + cmdPort);
-		System.out.print("IP address is ");
-		for (int i = 0; i < 4; i++) {
-			System.out.print(IP[i]-'0'+'0');
-			System.out.print(".");
-		}
-		System.out.println();
-		System.out.println("--------------");
 	}
 }
