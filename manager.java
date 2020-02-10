@@ -1,6 +1,8 @@
 import java.net.*;
 import java.io.*;
 import java.util.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 public class manager extends Thread{
 	public static int SIZE = 4192;
 	public static int PORT = 30000;
@@ -56,12 +58,16 @@ public class manager extends Thread{
 				char[] temp_char = copy_buf(buffer);
 				agent temp = handler_buf(temp_char);
 				temp.printData();
-				Thread t3 = new Thread(){
-					public void run(){
-						start_TCP(temp.cmdPort);
-					}
-				};
-				t3.start();
+				if(!ports.contains(temp.cmdPort)){
+					ports.add(temp.cmdPort);
+					temp.printData();
+					Thread t3 = new Thread(){
+						public void run(){
+							start_TCP(temp.cmdPort);
+						}
+					};
+					t3.start();
+				}
 			}catch(IOException e){
 				System.out.println(e);
 				System.out.println("Beacon");
@@ -83,14 +89,13 @@ public class manager extends Thread{
 				} 
 				catch (Exception e){ 
 					e.printStackTrace(); 
-				System.out.println("TCP");
+					System.out.println("TCP");
 				} 
 			} 
 		}catch(IOException e){
 			System.out.println(e);
-				System.out.println("TCP");
-		}
-	}
+			System.out.println("TCP");
+		} }
 
 	/**
 	 * Handle a new agent that has come in
@@ -104,9 +109,10 @@ public class manager extends Thread{
 					System.out.println("This entity has started again somehow");
 				}
 				else{
+					System.out.println("The beacon is checking in");
 				}
 			}
-			else
+			else// New entitiy has appeared
 				entities.add(A);
 		}
 	}
@@ -122,7 +128,6 @@ public class manager extends Thread{
 		}
 		return toreturn;
 	}
-
 	// To send ID | startUpTime | timeInterval | IP | cmdPort
 	//Assume each byte is one char.
 	//Use standard java encode/decode to convert to ascii
@@ -150,19 +155,22 @@ public class manager extends Thread{
 					break;
 				case 3: 
 					startUpTime = toInteger32(construct);
+					for (int j = 0; j < 4; j++) {
+						System.out.println("byte " + j);
+						byte temp = (byte)construct[j];
+						String s1 = String.format("%8s", Integer.toBinaryString(temp & 0xFF)).replace(' ', '0');
+						System.out.println(s1); 
+					}
 					break;
 				case 4: 
 					ID = toInteger32(construct);
 					break;
 			}
-		}
-		agent toreturn = new agent(ID,startUpTime,timeInterval,IP,cmdPort);
+		} agent toreturn = new agent(ID,startUpTime,timeInterval,IP,cmdPort);
 		return toreturn;
 	}
 	public static void main(String[] args) throws SocketException, UnknownHostException{
 		manager torun = new manager();
-		//torun.in_socket = new DatagramSocket(PORT);
-		//torun.run();
 	}
 	int toInteger32(char[] bytes)
 	{
@@ -189,12 +197,12 @@ public class manager extends Thread{
 				} 
 				catch (Exception e){ 
 					e.printStackTrace(); 
-				System.out.println("cmd");
+					System.out.println("cmd");
 				} 
 			} 
 		}catch(IOException e){
 			System.out.println(e);
-				System.out.println("cmd");
+			System.out.println("cmd");
 		}
 	}
 }
@@ -235,10 +243,6 @@ class TCP_Conn extends Thread
 			while((counter = DataInputS.read(buffer)) > 0){
 				String toprint = new String(buffer,"UTF-8");
 				System.out.println(toprint);
-				if(toprint.contains("end")){
-					System.out.println("broken");
-					break;
-				}
 			}
 			s.close();
 		}catch(IOException e){

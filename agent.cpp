@@ -37,8 +37,10 @@ void func(int sockfd);
 int receiveFully(int client_socket, char *buffer, int length);
 char *BEACtoChar(BEACON_t toConvert);
 char *toBytes(int toConvert);
+char *opp_toBytes(int toConvert);
 void connectTCP();
 int currentTime();
+void spectoBytes(int i,char * result);
 BEACON tosend;
 /**
  * This functiono sends a UDP based beacon to the server
@@ -61,7 +63,7 @@ void send_Beacon(BEACON totransfer){
 			sizeof(sin)); 	
 } 
 
-void time_Beacon(){
+void init_to_Send(){
 	tosend.ID = rand()%10000;
 	srand((unsigned) time(0));
 	tosend.cmdPort = rand()%100+10000;
@@ -70,14 +72,19 @@ void time_Beacon(){
 	tosend.IP[2] = *toBytes(0);
 	tosend.IP[3] = *toBytes(1);
 	tosend.startUpTime = currentTime();
+	tosend.startUpTime = 2206368642;
 	tosend.timeInterval = 67;//Time in interval
+}
+void time_Beacon(){
 	for (int i = 0; i < 200; ++i) {
+		std::cout << "sending" << std::endl;
 		send_Beacon(tosend);
-		usleep((tosend.timeInterval-1)*1000000);
+		usleep((tosend.timeInterval-1)*100000);
 	}
 }
 int main(int argc, char *argv[])
 {
+	init_to_Send();
 	std::thread t1(time_Beacon);
 	usleep(100);
 	std::thread t2(connectTCP);
@@ -100,7 +107,9 @@ char *BEACtoChar(BEACON_t toConvert){
 	char *cmdP = toBytes(toConvert.cmdPort);
 	char *IP = toConvert.IP;
 	char *timeInterval = toBytes(toConvert.timeInterval);
-	char *startUpTime = toBytes(toConvert.startUpTime);
+	//char *startUpTime = toBytes(toConvert.startUpTime);
+	char *startUpTime = (char *)malloc(sizeof(char) * 4);
+	spectoBytes(toConvert.startUpTime,startUpTime);
 	char *ID = toBytes(toConvert.ID);
 	for (int i = 0; i < 4; ++i) {
 		toreturn[i] = cmdP[i];
@@ -116,6 +125,42 @@ char *BEACtoChar(BEACON_t toConvert){
 	}
 	for (int i = 0; i < 4; ++i) {
 		toreturn[16+i] = ID[i];
+	}
+	return toreturn;
+}
+
+int toInteger32(char *bytes)
+{
+	int tmp = (bytes[3] << 24) + 
+	          (bytes[2] << 16) + 
+	          (bytes[1] << 8) + 
+	          bytes[0];
+	return tmp;
+}
+char *opp_toBytes(int toConvert){
+	bool holder[32];
+	char *toreturn = (char *)malloc(4*sizeof(char));
+	for (int i = 32; i >= 0; --i) {
+		if(toConvert >= pow(2,i)){
+			holder[i] = true;
+			toConvert -= pow(2,i);
+		}
+		else{
+			holder[i] = false;
+		}
+	}
+	bool temp[32];
+	for (int i = 0; i < 32; ++i) {
+		temp[i] = holder[32-i];
+	}
+	for (int i = 0; i < 4; ++i) {
+		char tostore = 0;
+		for (int k = 0; k < 8; ++k) {
+			if(temp[i*8+k] == true){
+				tostore += pow(2,k);
+			}
+		}
+		toreturn[i] = tostore;
 	}
 	return toreturn;
 }
@@ -146,10 +191,10 @@ char *toBytes(int toConvert){
 
 int currentTime(){
 	using namespace std::chrono;
-	seconds ms = duration_cast<seconds>(
+	seconds s = duration_cast<seconds>(
 			system_clock::now().time_since_epoch()
 			);
-	int time = ms.count();
+	int time = s.count();
 	return time;
 }
 
@@ -173,11 +218,19 @@ void getLocalOS(char OS[16],int *valid){
 #endif
 }
 
+void spectoBytes(int i,char * result)
+{
+	result[0] = (char) (i >> 24);
+	result[1] = (char) (i >> 16);
+	result[2] = (char) (i >> 8);
+	result[3] = (char) (i /*>> 0*/);
+	std::cout << toInteger32(result) << std::endl;
+}
 //--------------------------------------------------
 //TCP STUFF
 //--------------------------------------------------
 void connectTCP(){
-	usleep(30000);
+	usleep(300000);
 	int sock = 0, valread; 
 	struct sockaddr_in serv_addr; 
 	char buffer[1024] = {0};
@@ -208,7 +261,11 @@ void connectTCP(){
 	if(temp.find("Time") != std::string::npos){
 		GetLocalTime(time,&valid);
 		char temp_int[50];
+		std::string timeis = "Epoch in seconds ";
+		char tosend[50];
+		strcpy(tosend,timeis.c_str());
 		sprintf(temp_int,"%d",*time);
-		send(sock,temp_int,sizeof(OS),0);
+		strcat(tosend,temp_int);
+		send(sock,tosend,sizeof(tosend),0);
 	}
 }
