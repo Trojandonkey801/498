@@ -3,6 +3,7 @@
 #include <sys/utsname.h>
 #include <stdio.h>
 #include <ctime>
+#include <time.h>
 #include <chrono>
 #include <math.h>
 #include <ratio>
@@ -23,7 +24,6 @@ int last_time = 0;
 /**
  * This is a struct containing the information to send in a beacon
  *
- *
  */
 typedef struct BEACON
  {
@@ -33,6 +33,9 @@ typedef struct BEACON
  	char  	IP[4];	            // the IP address of this client
  	int		cmdPort;       // the client listens to this port for manager commands
  }BEACON_t;
+
+
+// function and variable declarations
 void func(int sockfd);
 int receiveFully(int client_socket, char *buffer, int length);
 char *BEACtoChar(BEACON_t toConvert);
@@ -42,9 +45,11 @@ void connectTCP();
 int currentTime();
 void spectoBytes(int i,char * result);
 BEACON tosend;
+
 /**
  * This functiono sends a UDP based beacon to the server
  * on port 30000
+ * @param BEACON to send
  */
 void send_Beacon(BEACON totransfer){
 	int server_socket;
@@ -63,6 +68,9 @@ void send_Beacon(BEACON totransfer){
 			sizeof(sin)); 	
 } 
 
+/**
+ * Initializes the beacon that this agent operates with
+ */
 void init_to_Send(){
 	tosend.ID = rand()%10000;
 	srand((unsigned) time(0));
@@ -71,17 +79,29 @@ void init_to_Send(){
 	tosend.IP[1] = *toBytes(0);
 	tosend.IP[2] = *toBytes(0);
 	tosend.IP[3] = *toBytes(1);
-	tosend.startUpTime = currentTime();
-	tosend.startUpTime = 2206368642;
-	tosend.timeInterval = 67;//Time in interval
+	//tosend.startUpTime = currentTime();
+	tosend.startUpTime = 8642;
+	tosend.timeInterval = 60;//Time in interval
 }
+
+/**
+ * Is responsible for sending a new beacon at regular intervals.
+ * The time is specified such that it sleeps for timeInterval seconds
+ * by calling usleep
+ */
 void time_Beacon(){
 	for (int i = 0; i < 200; ++i) {
 		std::cout << "sending" << std::endl;
 		send_Beacon(tosend);
-		usleep((tosend.timeInterval-1)*100000);
+		usleep((tosend.timeInterval-1)*1000000);
 	}
 }
+
+/*
+ * The main method that initializes, and starts the threads that the 
+ * agent uses
+ *
+ */
 int main(int argc, char *argv[])
 {
 	init_to_Send();
@@ -99,17 +119,20 @@ int main(int argc, char *argv[])
 //--------------------------------------------------
 
 
-// To send ID | startUpTime | timeInterval | IP | cmdPort
-// This function converts a beacon into that char pointer
-// to be sent over UDP
+/**
+ * To send ID | startUpTime | timeInterval | IP | cmdPort
+ * This function converts a beacon into that char pointer
+ * to be sent over UDP
+ * It is encoded in the above way, by specifying a central
+ * char pointer that is sent
+ */
 char *BEACtoChar(BEACON_t toConvert){
 	char *toreturn = (char *)malloc(20*sizeof(char));
 	char *cmdP = toBytes(toConvert.cmdPort);
 	char *IP = toConvert.IP;
 	char *timeInterval = toBytes(toConvert.timeInterval);
-	//char *startUpTime = toBytes(toConvert.startUpTime);
-	char *startUpTime = (char *)malloc(sizeof(char) * 4);
-	spectoBytes(toConvert.startUpTime,startUpTime);
+	char *startUpTime = toBytes(toConvert.startUpTime);
+	//spectoBytes(toConvert.startUpTime,startUpTime);
 	char *ID = toBytes(toConvert.ID);
 	for (int i = 0; i < 4; ++i) {
 		toreturn[i] = cmdP[i];
@@ -129,6 +152,10 @@ char *BEACtoChar(BEACON_t toConvert){
 	return toreturn;
 }
 
+/**
+ * Converts the given bytes to an integer
+ * Pulled from sample codes on canvas
+ */
 int toInteger32(char *bytes)
 {
 	int tmp = (bytes[3] << 24) + 
@@ -137,6 +164,12 @@ int toInteger32(char *bytes)
 	          bytes[0];
 	return tmp;
 }
+/**
+ * A method to convert a given int to Bytes
+ * it goes through and checks individual bits
+ * This function however reverses the bits.. 
+ * It's not actually used anywhere
+ */
 char *opp_toBytes(int toConvert){
 	bool holder[32];
 	char *toreturn = (char *)malloc(4*sizeof(char));
@@ -165,6 +198,10 @@ char *opp_toBytes(int toConvert){
 	return toreturn;
 }
 
+/**
+ * A method to convert a given int to Bytes
+ * it goes through and checks individual bits
+ */
 char *toBytes(int toConvert){
 	bool holder[32];
 	char *toreturn = (char *)malloc(4*sizeof(char));
@@ -189,6 +226,10 @@ char *toBytes(int toConvert){
 	return toreturn;
 }
 
+/**
+ * Returns current time in epochs in miliseconds 
+ *
+ */
 int currentTime(){
 	using namespace std::chrono;
 	seconds s = duration_cast<seconds>(
@@ -198,10 +239,18 @@ int currentTime(){
 	return time;
 }
 
+/**
+ * Calls the CurrentTime() function get return a pointer to current time
+ */
 void GetLocalTime(int *time, int *valid){
 	*time = currentTime();
 }
 
+/**
+ * Helper function to return what kind of OS is running
+ * This function simply checks if each OS is defined in filepath
+ * This is a required function according to the homework specs
+ */
 void getLocalOS(char OS[16],int *valid){
 #if defined(_WIN32)
 	strcpy(OS,"OS is: swindows");
@@ -218,14 +267,6 @@ void getLocalOS(char OS[16],int *valid){
 #endif
 }
 
-void spectoBytes(int i,char * result)
-{
-	result[0] = (char) (i >> 24);
-	result[1] = (char) (i >> 16);
-	result[2] = (char) (i >> 8);
-	result[3] = (char) (i /*>> 0*/);
-	std::cout << toInteger32(result) << std::endl;
-}
 //--------------------------------------------------
 //TCP STUFF
 //--------------------------------------------------
@@ -253,18 +294,19 @@ void connectTCP(){
 	temp = s;
 	int valid;
 	char OS[16];
-	int *time = (int *)malloc(sizeof(int));
+	int *time_tt = (int *)malloc(sizeof(int));
 	if(temp.find("OS") != std::string::npos){
 		getLocalOS(OS,&valid);
 		send(sock,OS,sizeof(OS),0);
 	}
 	if(temp.find("Time") != std::string::npos){
-		GetLocalTime(time,&valid);
+		time_t my_time = time(NULL);
 		char temp_int[50];
-		std::string timeis = "Epoch in seconds ";
+		sprintf(temp_int,"%s", ctime(&my_time));
+		GetLocalTime(time_tt,&valid);
+		std::string timeis = "Time on machine ";
 		char tosend[50];
 		strcpy(tosend,timeis.c_str());
-		sprintf(temp_int,"%d",*time);
 		strcat(tosend,temp_int);
 		send(sock,tosend,sizeof(tosend),0);
 	}
