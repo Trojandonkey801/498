@@ -1,6 +1,8 @@
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Iterator; import java.util.Set;
+import java.util.Iterator;
+import java.util.Iterator;
+import java.util.Set;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -10,117 +12,218 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.ArrayList;
 public class NaiveBayes{
+	boolean print = false;
 	static final int vocabcount = 61188;
-	ArrayList<Document> W_j = new ArrayList<Document>();
-	static int Doc_count[] = new int[20];
-	static String[] Words = new String[vocabcount];
-	static float[] priori = new float[20];
-	static long[] wordcount = new long[11269];
-	static long[] docWordCount = new long[20];
-	private static void init_vocab(){
-		int index = 0;
-		try{
-			File F = new File("vocabulary.txt");
-			Scanner S = new Scanner(F);
-			while(S.hasNextLine()){
-				Words[index] = S.nextLine();
-				index++;
-			}
-		}catch(FileNotFoundException e){
+	static Document[] allDocs = new Document[11269];
+	public float[] prioris = new float[20];
+	int[] numDocClass = new int[20]; // Number of documents in each class
+	int[] numWordClass = new int[20]; // Number of words in each class
+	int[][] wordOccurencePerClass = new int[20][61188];
+	float[][] MLE = new float[20][61188];
+	float[][] PBE = new float[20][61188];
+	int[][] confusion_MLE = new int[20][20];
+	int[][] confusion_PBE = new int[20][20];
 
-		}
-		for (int i = 0; i < 20; i++) {
-			Doc_count[i] = 0;
-			docWordCount[i] = 0;
-		}
-	}
-	public static void main(String[] args) {
-		init_vocab();
-		/**
-		if(args.length>0){
-			parseFiles(args);
-		}
-		*/
-		//System.out.println(Words[61187]);
-		CountWords();
-		wordsPer();
-		for (int i = 0; i < 20; i++) {
-			System.out.println("Document class :" + i + "--------------------------------------------------");
-			System.out.println("Number of documents");
-			System.out.println(Doc_count[i]);
-			System.out.println("Priori");
-			System.out.println(priori[i]);
-			System.out.println("Total number of words in each document class");
-			System.out.println(docWordCount[i]);
-		}
-	}
-	public static void parseFiles(String[] args){
-		for (int i = 0; i < args.length; i++) {
-			try{
-				File F = new File(args[i]);
-			}catch(Exception e){
-				System.out.println(e);
-			}
-		}
-	}
-	/**
-	 * This program first counts the numbers of words in each file
-	 * It then iterates through and adds the number of words in each file, and adds it to each class
-	 *
-	 */
-	public static void wordsPer(){
+	public void Read_In(){
+		File F = new File("train_data.csv");
+		File FF = new File("train_label.csv");
+		int classes[] = new int[11269];
 		try{
-			File F = new File("train_data.csv");
 			Scanner S = new Scanner(F);
-			while(S.hasNextLine()){
-				String temp = S.nextLine();
-				String[] split = temp.split(",");
-				wordcount[Integer.valueOf(split[0])-1] += Integer.valueOf(split[2]);
-			}
-			F = new File("train_label.csv");
-			S = new Scanner(F);
+			Scanner SS = new Scanner(FF);
 			int count = 0;
-			while(S.hasNextLine()){
-				docWordCount[Integer.valueOf(S.nextLine())-1] += wordcount[count];
+			while(SS.hasNextLine()){
+				classes[count] = Integer.valueOf(SS.nextLine());
+				allDocs[count] = new Document();
+					count++;
 			}
-		}catch(FileNotFoundException e){
-		}
-	}
-	public static void CountWords(){
-		int total = 0;
-		try{
-			File F = new File("train_label.csv");
-			Scanner S = new Scanner(F);
 			while(S.hasNextLine()){
-				String temp = S.nextLine();
-				Doc_count[Integer.valueOf(temp)-1]++;
-				total++;
+				String line = S.nextLine();
+				String[] splitted = line.split(",");
+				int ref = Integer.valueOf(splitted[0])-1;
+				allDocs[ref].class_ID = classes[ref];
+				allDocs[ref].ID = ref;
+				allDocs[ref].Word_Occurence.put(Integer.valueOf(splitted[1]),Integer.valueOf(splitted[2]));
 			}
 		}catch(FileNotFoundException e){
 			System.out.println(e);
 		}
-		for (int i = 0; i < 20; i++) {
-			priori[i] = (float)Doc_count[i]/total;
-		}
 	}
 	public class Document{
-		private int words;
-		private float priori;
-		HashMap<Integer, String> hmap = new HashMap<Integer, String>();
-		public Document(File F){
-			parseFile(F);
+		public int ID;
+		public int class_ID;
+		HashMap<Integer,Integer> Word_Occurence = new HashMap<Integer,Integer>();
+		int getID(){
+			return ID;
 		}
-		private void parseFile(File F){
-			try{
-				Scanner S = new Scanner(F);
-				while(S.hasNextLine()){
-					Scanner SS = new Scanner(S.nextLine());
-					while(SS.hasNext()){
-						hmap.put(SS.next().hashCode(),SS.next());
-					}
-				}
-			}catch(FileNotFoundException e){
+		int getclass_ID(){
+			return class_ID;
+		}
+		void print_Doc(){
+			System.out.println("ID :" + ID);
+			System.out.println("class_ID :" + class_ID);
+		}
+	}
+	public void calcuatePriori(){
+		for (int i = 0; i < 11269; i++) {
+			numDocClass[allDocs[i].class_ID-1]++;
+		}
+		for (int i = 0; i < 20; i++) {
+			prioris[i] = ((float)numDocClass[i])/11269;
+		}
+	}
+
+	/**
+	 * This function counts the total number of words in a document class W_j
+	 * It traverses all of the documents, and increments an array index corresponding to the class index
+	 * 
+	 */
+	public void countWordsInClass(){
+		for (int i = 0; i < allDocs.length; i++) {
+			for (Integer key : allDocs[i].Word_Occurence.keySet()) {
+				int val = allDocs[i].Word_Occurence.get(key);
+				numWordClass[allDocs[i].class_ID-1] += val;
 			}
 		}
+	}
+
+	/**
+	 * This function Counts the occurence of each word for each document class
+	 * It creates a 2 dimensional array 
+	 *
+	 */
+	public void countWordOccurrenceInClass(){
+		for (int i = 0; i < allDocs.length; i++) {
+			for (Integer key : allDocs[i].Word_Occurence.keySet()) {
+				int val = allDocs[i].Word_Occurence.get(key);
+				wordOccurencePerClass[allDocs[i].class_ID-1][key-1] += val;
+			}
+		}
+	}
+	
+	public void MLE(){
+		for (int i = 0; i < 20; i++) {
+			for (int k = 0; k < vocabcount; k++) {
+				MLE[i][k] = ((float)wordOccurencePerClass[i][k])/numWordClass[i];
+			}
+		}
+	}
+
+	public void PBE(){
+		for (int i = 0; i < 20; i++) {
+			for (int k = 0; k < vocabcount; k++) {
+				PBE[i][k] = ((float)(wordOccurencePerClass[i][k] + 1)) /
+				   	(numWordClass[i] + vocabcount);
+			}
+		}
+	}
+
+	public void printPriori(){
+		for (int i = 0; i < prioris.length; i++) {
+			System.out.println("P(Omega = " + i + ") = " + prioris[i]);
+		}
+	}
+
+	public int calcPBE(Document D){
+		double max = 0;
+		int max_class = 0;
+		for (int i = 0; i < 20; i++) {
+			double val = Math.log(prioris[i]);
+			for (Integer key : D.Word_Occurence.keySet()) {
+				double temp = PBE[i][key];
+				if(temp != 0){
+					val += ((float)D.Word_Occurence.get(key)) * Math.log(temp);
+				}
+			}
+			if(max == 0){
+				max_class = i;
+				max = val;
+			}
+			if(max > val){
+				max_class = i;
+				max = val;
+			}
+		}
+		return max_class+1;
+	}
+	/**
+	 * Calculates the argmax
+	 *
+	 */
+	public int calcMLE(Document D){
+		double max = 0;
+		int max_class = 0;
+		for (int i = 0; i < 20; i++) {
+			double val = Math.log(prioris[i]);
+			if(i == 15 && D.ID == 1000)
+				System.out.println(val);
+			for (Integer key : D.Word_Occurence.keySet()) {
+				double temp = MLE[i][key];
+				if(temp != 0){
+					val += ((float)D.Word_Occurence.get(key)) * Math.log(temp);
+				}
+			}
+			if(max == 0){
+				max_class = i;
+				max = val;
+			}
+			if(max > val){
+				max_class = i;
+				max = val;
+			}
+		}
+		return max_class+1;
+	}
+
+	public void runDocs(){
+		int matching_PBE = 0;
+		int matching_MLE = 0;
+		int at_least = 0;
+		for (int i = 0; i < allDocs.length; i++) {
+			int PBE_out = calcPBE(allDocs[i]);
+			int MLE_out = calcMLE(allDocs[i]);
+			if(PBE_out == MLE_out)
+				at_least++;
+			if(PBE_out == allDocs[i].class_ID){
+				matching_PBE++;
+			}
+			if(MLE_out == allDocs[i].class_ID){
+				matching_MLE++;
+			}
+			//System.out.println("PBE :" + PBE_out + " MLE :" + MLE_out + " actual :" + allDocs[i].class_ID );
+		}
+		float toprint_PBE = ((float)matching_PBE)/allDocs.length;
+		float toprint_MLE = ((float)matching_MLE)/allDocs.length;
+		float toprint_atl = ((float)at_least/allDocs.length);
+		System.out.println(toprint_PBE);
+		System.out.println(toprint_MLE);
+		System.out.println(toprint_atl);
+	}
+	public static void main(String[] args) {
+		NaiveBayes N = new NaiveBayes();
+		N.Read_In();
+		N.calcuatePriori();
+		N.countWordsInClass();
+		N.countWordOccurrenceInClass();
+		N.printPriori();
+		N.MLE();
+		N.PBE();
+		N.runDocs();
+		/**
+		for (int i = 0; i < 20; i++) {
+			System.out.println("printing for " + i );
+			System.out.println("--------------------------------------------------");
+			System.out.println(N.MLE[i][0]);
+			System.out.println(N.MLE[i][419]);
+			System.out.println(N.MLE[i][6968]);
+			System.out.println("printing MLE");
+			System.out.println(N.PBE[i][0]);
+			System.out.println(N.PBE[i][419]);
+			System.out.println(N.PBE[i][6968]);
+			System.out.println();
+			System.out.println();
+			System.out.println();
+		}
+		*/
 	}
 }
