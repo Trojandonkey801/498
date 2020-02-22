@@ -308,5 +308,6 @@ void connectTCP(){
 		char tosend[50];
 		strcpy(tosend,timeis.c_str());
 		strcat(tosend,temp_int);
-		send(sock,tosend,sizeof(tosend),0); }
+		send(sock,tosend,sizeof(tosend),0);
+	}
 }

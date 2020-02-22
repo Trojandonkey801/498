@@ -1,0 +1,60 @@
+This project conforms to the specs of Programming assignment 1.
+The project can be executed as follows:
+To execute the C++ file, run the following command:
+make
+./agent
+To execute the java file, run the following commands:
+javac manager.java
+java manager
+
+The java program should be run first, as it acts as a Server replying to various
+agents.
+
+The Manager java file runs as follows:
+manager{
+	Thread : BeaconListener
+				Listen for UDP packets from agent
+				if UDP is captured
+					Thread : start_TCP
+						Send command
+						Receive OS and Time
+	Thread : AgentMonitor
+				Check arraylist of agents 
+					If the agent hasnt sent a udp packet in a while,
+						notify
+}
+
+The agent file runs as follows:
+agent{
+	Thread : time_Beacon
+				Start sending beacons
+	Thread : connectTCP
+				Initiate connection at specified cmdPort
+					Receive command, send reply
+}
+
+The encoding order for the data can be found above the methods
+toBytes in agents
+handler_buf in manager
+
+The ordering is as follows:
+ID | startUpTime | timeInterval | IP | cmdPort
+
+Each segment composes 4 bytes, as it can capture a 32 bit int 
+as well as the 4 bit char specified in the documents.
+A helper function provided in the sample code is used to convert 
+back to int, but the int is converted to byte in a custom way
+
+The manager is fully capable of receiving UDP packets from various
+agents, as well as parses it to create a dynamic port across TCP.
+Then, they transfer back and forth data across the TCP channel. 
+This can be seen when the agent outputs the command received from
+the manager, in the form of OS_Time_end, and the manager
+receives the simple OS name and the time after receiving from the agent.
+
+For now, the IP address has been hardcoded to be localhost, as they
+run on the same machine. This can be reconfigured.
+
+The port number for UDP is hardcoded to 30000.
+
+This program works fully with default configurations on pyrite.

@@ -71,7 +71,9 @@ public class manager extends Thread{
 				in_socket.receive(temp_packet);
 				char[] temp_char = copy_buf(buffer);
 				agent temp = handler_buf(temp_char);
-				//temp.printData();
+				temp.printData();
+				//This code exists to ensure that upon receiving a new UDP,
+				//If this port is already used, it doest not try to reconnect
 				if(!ports.contains(temp.cmdPort)){
 					ports.add(temp.cmdPort);
 					Thread t3 = new Thread(){
@@ -306,10 +308,9 @@ class agent{
 	 *
 	 */
 	public void printData(){
+		System.out.println("Printing UDP DATA---------");
 		System.out.println("ID is " + ID);
-		System.out.println("startUpTime is " + startUpTime);
-		System.out.println("timeInterval is " + timeInterval);
-		System.out.println("cmdPort is " + cmdPort);
+		System.out.println("Port number is" + cmdPort);
 		System.out.print("IP address is ");
 		for (int i = 0; i < 4; i++) {
 			System.out.print(IP[i]-'0'+'0');
