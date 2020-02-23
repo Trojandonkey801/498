@@ -320,21 +320,5 @@ public class NaiveBayes{
 		System.out.println("--------------------------------------------------");
 		N.runDocs_test();
 		N.printConfusion_test();
-		/**
-		  for (int i = 0; i < 20; i++) {
-		  System.out.println("printing for " + i );
-		  System.out.println("--------------------------------------------------");
-		  System.out.println(N.MLE[i][0]);
-		  System.out.println(N.MLE[i][419]);
-		  System.out.println(N.MLE[i][6968]);
-		  System.out.println("printing MLE");
-		  System.out.println(N.PBE[i][0]);
-		  System.out.println(N.PBE[i][419]);
-		  System.out.println(N.PBE[i][6968]);
-		  System.out.println();
-		  System.out.println();
-		  System.out.println();
-		  }
-		  */
 	}
 }

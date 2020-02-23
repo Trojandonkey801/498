@@ -8,6 +8,7 @@
 #include <netinet/in.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <pthread.h>
 typedef struct {
 	char OS[16];
 	char valid;
@@ -98,7 +99,7 @@ void handleTimePayload(char *buffer,int length, char* valid){
 	}
 }
 
-void listenTCP(){
+void * listenTCP(void *v){
 	char buffer[124] = {0};
 	int server_socket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
 	printf("server_socket = %d\n", server_socket);
@@ -108,7 +109,7 @@ void listenTCP(){
 	memset(&sin, 0, sizeof(sin));
 	//sin.sin_len = sizeof(sin);  // comment this line out if running on pyrite (linux) 
 	sin.sin_family = AF_INET; // or AF_INET6 (address family)
-	sin.sin_port = htons(1234);
+	sin.sin_port = htons(*(int *)v);
 	sin.sin_addr.s_addr= INADDR_ANY;
 
 	if (bind(server_socket, (struct sockaddr *)&sin, sizeof(sin)) < 0) 
@@ -135,17 +136,27 @@ void listenTCP(){
 		handleHeader(header,&length,&valid);
 		char *payload = malloc(length * sizeof(char));
 		read(client_socket,buffer,length);
-		handlePayload()
-		for (int i = 0; i < length; ++i) {
-		}
-		send(client_socket, 124, 0); // 4 bytes first
+		printf("%s",buffer);
 	}
+}
+
+void executeCommand(char * buf, int * length){
+	
 }
 
 
 int main(int argc, char *argv[])
 {
-	listenTCP();
+	int *OS = malloc(sizeof(*OS));
+	int *Time = malloc(sizeof(*Time));
+	*OS = 1234;
+	*Time = 1235;
+	pthread_t pid_OS;
+	pthread_t pid_time;
+	pthread_create(&pid_OS, NULL, listenTCP, OS);
+	pthread_create(&pid_time, NULL, listenTCP, Time);
+	pthread_join(pid_OS,NULL);
+	pthread_join(pid_time,NULL);
 	return 0;
 }
 
